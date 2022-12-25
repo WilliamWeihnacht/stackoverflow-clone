@@ -1,0 +1,16 @@
+form {
+    display: flex;
+    justify-content: space-around;
+    border: 2px;
+    border-style: solid;
+    border-color: black;
+    margin: 10%;
+}
+
+label {
+    padding: 15px;
+}
+
+input {
+    margin: 5px;
+}
