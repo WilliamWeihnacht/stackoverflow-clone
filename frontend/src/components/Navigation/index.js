@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
+import logo from '../../img/navbar-logo.png';
 import './Navigation.css';
 
 function Navigation() {
@@ -22,9 +23,9 @@ function Navigation() {
   }
 
   return (
-    <ul>
+    <ul className='navbar'>
       <li>
-        <NavLink exact to="/">Home</NavLink>
+        <NavLink exact to="/"><img src={logo}/></NavLink>
         {sessionLinks}
       </li>
     </ul>
