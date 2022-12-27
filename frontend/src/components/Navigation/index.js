@@ -26,7 +26,7 @@ function Navigation() {
     <ul className='navbar'>
       <li>
         <NavLink exact to="/"><span className='logo-image'>Stack Overflow</span></NavLink>
-        <input></input>
+        <input placeholder='Search...'></input>
         {sessionLinks}
       </li>
     </ul>
