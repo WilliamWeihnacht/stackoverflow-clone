@@ -3,15 +3,24 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import logo from '../../img/navbar-logo.png';
+import { useDispatch } from 'react-redux';
+import * as sessionActions from '../../store/session';
 import './Navigation.css';
 
 function Navigation() {
+  const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
+
+  const logout = (e) => {
+    e.preventDefault();
+    dispatch(sessionActions.logout());
+  };
 
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <ProfileButton user={sessionUser} />
+      // <ProfileButton user={sessionUser} />
+      <button onClick={logout}>Logout</button>
     );
   } else {
     sessionLinks = (
