@@ -16,8 +16,8 @@ function Navigation() {
   } else {
     sessionLinks = (
       <>
-        <NavLink to="/login">Log In</NavLink>
-        <NavLink to="/signup">Sign Up</NavLink>
+        <button><NavLink to="/login">Log In</NavLink></button>
+        <button><NavLink to="/signup">Sign Up</NavLink></button>
       </>
     );
   }
@@ -25,7 +25,8 @@ function Navigation() {
   return (
     <ul className='navbar'>
       <li>
-        <NavLink exact to="/"><img src={logo}/></NavLink>
+        <NavLink exact to="/"><span className='logo-image'>Stack Overflow</span></NavLink>
+        <input></input>
         {sessionLinks}
       </li>
     </ul>

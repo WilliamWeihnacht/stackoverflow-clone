@@ -1,6 +1,7 @@
 .navbar {
     display: flex;
     align-items: center;
+    justify-content: space-evenly;
     position: fixed;
     overflow: hidden;
     width: 100%;
@@ -11,8 +12,34 @@
     color: black;
     border-top: 5px solid hsl(27,90%,55%);
     box-shadow: 0 3px 3px grey;
+    list-style: none;
+}
+
+.navbar li {
+    height: 100%;
+}
+
+.logo-image {
+    background-image: url(../../img/navbar-logo.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: transparent;
+    padding: 5px;
 }
 
 .navbar button {
-    
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 3px;
+    border: 0;
+    background-color: hsl(206,100%,52%);
+    color: white;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
 }
