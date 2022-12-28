@@ -10,10 +10,12 @@ ApplicationRecord.transaction do
     puts "Destroying tables..."
     # Unnecessary if using `rails db:seed:replant`
     User.destroy_all
+    Question.destroy_all
   
     puts "Resetting primary keys..."
     # For easy testing, so that after seeding, the first `User` has `id` of 1
     ApplicationRecord.connection.reset_pk_sequence!('users')
+    ApplicationRecord.connection.reset_pk_sequence!('questions')
   
     puts "Creating users..."
     # Create one user with an easy to remember username, email, and password:
@@ -31,6 +33,13 @@ ApplicationRecord.transaction do
         password: 'password'
       }) 
     end
+
+    puts "Creating questions..."
+    Question.create!(
+      user_id: 1,
+      title: "How to center a div?",
+      body: "I'm having some difficulty centering my div"
+    )
   
     puts "Done!"
 end
