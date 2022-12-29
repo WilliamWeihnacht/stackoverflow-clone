@@ -4,22 +4,26 @@ import LoginFormPage from "./components/LoginFormPage";
 import SignUpFormPage from "./components/SignUpFormPage";
 import Navigation from "./components/Navigation";
 import QuestionIndex from "./components/QuestionIndex";
+import NewQuestionForm from "./components/NewQuestionForm";
 
 function App() {
   return (
     <>
-      <Navigation />
-        <Switch>
-          <Route path="/">
-            <QuestionIndex/>
-          </Route>
-          <Route path="/login">
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignUpFormPage />
-          </Route>
-        </Switch>
+      <Navigation/>
+      <Switch>
+        <Route exact path="/">
+          <QuestionIndex/>
+        </Route>
+        <Route path="/login">
+          <LoginFormPage/>
+        </Route>
+        <Route path="/signup">
+          <SignUpFormPage/>
+        </Route>
+        <Route path={"/questions/new"}>
+          <NewQuestionForm/>
+        </Route>
+      </Switch>
     </>
   );
 }

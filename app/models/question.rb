@@ -11,6 +11,7 @@
 #
 class Question < ApplicationRecord
     validates :user_id, :title, :body, presence: true
+    validates :title, uniqueness: true, length: { maximum: 100 }
 
     belongs_to :user,
     foreign_key: :user_id,

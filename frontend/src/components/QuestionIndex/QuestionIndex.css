@@ -1,0 +1,15 @@
+.question-feed {
+    margin-top: 50px;
+}
+
+#header-box {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#header-box button {
+    margin: 20px;
+}

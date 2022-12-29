@@ -1,0 +1,15 @@
+.queston-list-item {
+    width: 80%;
+    margin: auto;
+    border-top: 1px solid gray;
+    border-left: 1px solid gray;
+    list-style: none;
+}
+
+.queston-list-item:last-child {
+    border-bottom: 1px solid gray;
+}
+
+.queston-list-item a {
+    text-decoration: none;
+}

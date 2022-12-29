@@ -8,8 +8,11 @@ class Api::QuestionsController < ApplicationController
     
     def create
         @question = Question.new(question_params)
+        # puts current_user
+        # @question.user_id = current_user.id
         if @question.save
-            render :show #consider changing to info
+            #render :show
+            render json: @question
         else
             render json: @question.errors.full_messages, status: 422
         end
@@ -30,6 +33,6 @@ class Api::QuestionsController < ApplicationController
 
     private
     def question_params
-        params.require(:question).permit(:title, :body)
+        params.require(:question).permit(:user_id, :title, :body)
     end
 end
