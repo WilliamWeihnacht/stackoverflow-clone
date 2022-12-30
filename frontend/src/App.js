@@ -24,8 +24,8 @@ function App() {
         <Route path="/questions/new">
           <NewQuestionForm/>
         </Route>
-        <Route path="/questions/:questionId">
-          <QuestionShow/>
+        <Route exact path="/questions/:questionId">
+          <QuestionShow />
         </Route>
       </Switch>
     </>

@@ -49,8 +49,17 @@ export const fetchQuestion = (questionId) => async (dispatch) => {
     const question = await res.json();
     dispatch(receiveQuestion(question));
   }
-};
+}
 
+export const deleteQuestion = (id) => async (dispatch) => {
+  const res = await csrfFetch(`/api/questions/${id}`, {
+    method: "DELETE"
+  });
+
+  if (res.ok) {
+    dispatch(removeQuestion(id));
+  }
+}
 
 //action creators
 export const receiveQuestions = questions => ({

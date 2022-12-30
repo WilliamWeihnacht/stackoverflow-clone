@@ -12,11 +12,12 @@
     margin: auto;
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: space-between;
 }
 
-#header-box {
-    
+#header-box a {
+    color: white;
 }
 
 #header-box button {

@@ -28,7 +28,13 @@ class Api::QuestionsController < ApplicationController
     end
 
     def destroy
-
+        if logged_in?
+            @question = Question.find_by(id: params[:id])
+            if current_user.id == @question.user_id
+                @question.answers.destroy_all
+                @question.delete
+            end
+        end
     end
 
     private

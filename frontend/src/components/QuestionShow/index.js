@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchQuestion, getQuestion } from '../../store/questionsReducer';
+import { fetchQuestion, getQuestion, deleteQuestion } from '../../store/questionsReducer';
 import { createAnswer } from '../../store/answersReducer';
 import "./QuestionShow.css";
 
@@ -12,8 +12,10 @@ const QuestionShow = () => {
     const dispatch = useDispatch();
     const [body, setBody] = useState("");
     const { questionId } = useParams();
-    const question = useSelector(getQuestion(questionId));
-    const id = useSelector(state => state.session.user.id);
+    const question = useSelector(state => Object.values(state.questions).find(q => q.id == questionId));
+    const userId = useSelector(state => state.session.user.id);
+
+    console.log(question);
 
     // useEffect(() => {
     //     dispatch(fetchQuestion(questionId));
@@ -30,10 +32,33 @@ const QuestionShow = () => {
         e.preventDefault();
         const data = {
             question_id: question.id,
-            user_id: id,
+            user_id: userId,
             body,
         }
         dispatch(createAnswer(data));
+    }
+
+    const editQuestion = () => {
+
+    }
+
+    const deleteThisQuestion = () => {
+        dispatch(deleteQuestion(question.id));
+    }
+
+    if (!question) {
+        return (
+            <div className='question-header'>
+                <h1>Question not found</h1>
+            </div>
+        )
+    }
+
+    let updateLinks;
+    if (userId === question.user_id) {
+        updateLinks = (<span><button onClick={editQuestion}>Edit</button><button onClick={deleteThisQuestion}>Delete</button></span>)
+    } else {
+        updateLinks = (<></>)
     }
 
     return (
@@ -41,6 +66,7 @@ const QuestionShow = () => {
             <div className='question-header'>
                 <h1>{question.title}</h1>
                 <span>Asked: {convertDateTime(question.created_at)}, Modified: {convertDateTime(question.updated_at)}</span>
+                {updateLinks}
             </div>
             <div className='question-body'>
                 <p>{question.body}</p>

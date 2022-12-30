@@ -14,7 +14,8 @@ class Answer < ApplicationRecord
 
     belongs_to :question,
     foreign_key: :question_id,
-    class_name: :Question
+    class_name: :Question,
+    dependent: :destroy
 
     belongs_to :user,
     foreign_key: :user_id,
