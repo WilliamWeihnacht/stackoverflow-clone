@@ -87,6 +87,4 @@ const questionReducer = (state = {}, action) => {
     };
 };
   
-  export default questionReducer;
-
-
+export default questionReducer;
