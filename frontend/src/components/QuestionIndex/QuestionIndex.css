@@ -12,4 +12,14 @@
 
 #header-box button {
     margin: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 3px;
+    border: 0;
+    background-color: hsl(206,100%,52%);
+}
+
+#header-box a {
+    color: white;
+    text-decoration: none;
 }

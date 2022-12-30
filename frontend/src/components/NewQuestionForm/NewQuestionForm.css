@@ -1,0 +1,9 @@
+.new-question-form-container {
+    margin-top: 50px;
+}
+
+.new-question-form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}

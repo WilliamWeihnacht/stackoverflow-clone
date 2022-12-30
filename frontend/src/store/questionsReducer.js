@@ -3,7 +3,6 @@ import csrfFetch from "./csrf";
 const RECEIVE_QUESTION = 'RECEIVE_QUESTION';
 const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 const REMOVE_QUESTION = 'REMOVE_QUESTION';
-const RECEIVE_QUESTION_DETAIL = 'RECEIVE_QUESTION_DETAIL';
 
 //fetch util methods
 export const requestQuestions = () => {
@@ -20,6 +19,11 @@ export const postQuestion = (question) => {
 export const requestQuestionDetail = id => {
     return fetch(`/api/questions/${id}`)
 }
+
+export const getQuestion = (questionId) => (store) => {
+  if (store.questions && store.questions[questionId]) return store.questions[questionId];
+  return null;
+};
 
 //thunk action creators
 export const fetchAllQuestions = () => async (dispatch) => {
@@ -38,6 +42,14 @@ export const createQuestion = (question) => async (dispatch) => {
       console.log(res.statusText);
     }
 }
+
+export const fetchQuestion = (questionId) => async (dispatch) => {
+  const res = await fetch(`/api/questions/${questionId}`);
+  if (res.ok) {
+    const question = await res.json();
+    dispatch(receiveQuestion(question));
+  }
+};
 
 
 //action creators

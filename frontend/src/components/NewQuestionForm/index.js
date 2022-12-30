@@ -20,9 +20,9 @@ const NewQuestionForm = () => {
     }
 
     return (
-        <>
+        <div className='new-question-form-container'>
             <h1>Ask a new question</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className='new-question-form'>
                 <label>Title
                     <input type="text" value={title} onChange={e => setTitle(e.target.value)} />
                 </label>
@@ -31,7 +31,7 @@ const NewQuestionForm = () => {
                 </label>
                 <button>Create</button>
             </form>
-        </>
+        </div>
     )
 }
 

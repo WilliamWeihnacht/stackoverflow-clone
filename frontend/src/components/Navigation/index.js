@@ -1,8 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-// import ProfileButton from './ProfileButton';
-// import logo from '../../img/navbar-logo.png';
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import './Navigation.css';
@@ -19,7 +17,6 @@ function Navigation() {
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      // <ProfileButton user={sessionUser} />
       <button onClick={logout}>Logout</button>
     );
   } else {
