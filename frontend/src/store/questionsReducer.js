@@ -21,7 +21,7 @@ export const requestQuestionDetail = id => {
 }
 
 export const getQuestion = (questionId) => (store) => {
-  if (store.questions && store.questions[questionId]) return store.questions[questionId];
+  if (store?.questions[questionId]) return store.questions[questionId];
   return null;
 };
 

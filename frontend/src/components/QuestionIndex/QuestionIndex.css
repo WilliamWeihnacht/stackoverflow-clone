@@ -2,12 +2,21 @@
     margin-top: 50px;
 }
 
+.question-feed ul {
+    margin: 0;
+    padding: 0;
+}
+
 #header-box {
     width: 80%;
     margin: auto;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
+}
+
+#header-box {
+    
 }
 
 #header-box button {

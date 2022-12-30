@@ -30,9 +30,13 @@ function Navigation() {
 
   return (
     <ul className='navbar'>
-      <li>
+      <li id='logo-li'>
         <NavLink exact to="/"><span className='logo-image'>Stack Overflow</span></NavLink>
+      </li>
+      <li id='search-li'>
         <input placeholder='Search...'></input>
+      </li>
+      <li id='session-li'>
         {sessionLinks}
       </li>
     </ul>
