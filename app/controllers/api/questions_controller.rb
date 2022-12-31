@@ -24,16 +24,19 @@ class Api::QuestionsController < ApplicationController
     end
 
     def update
-
+        @question = Question.find_by(id: params[:id])
+        if @question.update(goal_params)
+        else
+            flash[:errors] = @goal.errors.full_messages
+        end
     end
 
     def destroy
-        if logged_in?
-            @question = Question.find_by(id: params[:id])
-            if current_user.id == @question.user_id
-                @question.answers.destroy_all
-                @question.delete
-            end
+        # @goal = current_user.goals.find_by(id: params[:id])
+        @question = Question.find_by(id: params[:id])
+        if @question
+            @question.answers.destroy_all
+            @question.delete
         end
     end
 

@@ -15,8 +15,6 @@ const QuestionShow = () => {
     const question = useSelector(state => Object.values(state.questions).find(q => q.id == questionId));
     const userId = useSelector(state => state.session.user.id);
 
-    console.log(question);
-
     // useEffect(() => {
     //     dispatch(fetchQuestion(questionId));
     // }, [dispatch, questionId]);

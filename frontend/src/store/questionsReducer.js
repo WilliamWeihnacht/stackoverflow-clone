@@ -79,7 +79,7 @@ export const removeQuestion = questionId => ({
 
 //reducer
 const questionReducer = (state = {}, action) => {
-    Object.freeze(state);
+    // Object.freeze(state);
     const nextState = { ...state };
   
     switch (action.type) {
@@ -87,9 +87,15 @@ const questionReducer = (state = {}, action) => {
         nextState[action.question.id] = action.question;
         return nextState;
       case RECEIVE_QUESTIONS:
-        return {...nextState, ...action.questions}
+        // return {...nextState, ...action.questions}
+        return {...action.questions}
       case REMOVE_QUESTION:
-        delete nextState[action.questionId];
+        Object.entries(nextState).forEach(el => {
+          if (el[1].id == action.questionId) {
+            delete nextState[el[0]]
+          }
+        });
+        // delete nextState[action.questionId];
         return nextState;
       default:
         return state;

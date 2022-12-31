@@ -42,7 +42,7 @@ ApplicationRecord.transaction do
     )
 
     Question.create!(
-      user_id: 2,
+      user_id: 1,
       title: "Update an entity in database",
       body: "I have these two entities:
 
@@ -70,7 +70,7 @@ ApplicationRecord.transaction do
     )
 
     Question.create!(
-      user_id: 3,
+      user_id: 1,
       title: "Generate multiple random datetime stamps between two dates based on size",
       body: "I'm trying to generate multiple random datetime stamps between two dates,
 
@@ -92,7 +92,7 @@ ApplicationRecord.transaction do
     )
 
     Question.create!(
-      user_id: 5,
+      user_id: 1,
       title: "Unable to reset password using django test client",
       body: "I'm using pytest-django to test for password reset. When a request is sent to the reset url, the response contains a form with new_password1 and new_password2 which means, the reset url works successfully. When I send the new password and try using it to login, it doesn't work and the old password remains active"
     )

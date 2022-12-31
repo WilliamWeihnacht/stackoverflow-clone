@@ -11,7 +11,7 @@ const QuestionIndex = props => {
 
     useEffect(()=>{
         dispatch(fetchAllQuestions())
-    },[])
+    },[dispatch])
 
     return (
         <div className='question-feed'>
