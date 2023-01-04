@@ -7,18 +7,18 @@ import "./QuestionShow.css";
 
 const QuestionShow = () => {
     const dispatch = useDispatch();
+    const [title, setTitle] = useState("");
+    const [questionBody, setQuestionBody] = useState("");
     const [answerBody, setAnswerBody] = useState("");
     const [editing, setEditing] = useState(false);
     const [deleted, setDeleted] = useState(false);
     const { questionId } = useParams();
     const question = useSelector(state => Object.values(state?.questions).find(q => q.id == questionId));
-    const [questionBody, setQuestionBody] = useState("");
-    const [title, setTitle] = useState("");
     const userId = useSelector(state => state.session.user.id);
 
     useEffect(() => {
         dispatch(fetchQuestion(questionId));
-    }, [dispatch, questionId]);
+    }, [dispatch, questionId, editing]);
 
     const convertDateTime = (date) => {
         const year = date.slice(0,4);
@@ -43,6 +43,7 @@ const QuestionShow = () => {
             body: questionBody
         }
         dispatch(editQuestion(data))
+        setEditing(false);
     } 
 
     const handleDelete = (e) => {
