@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { createQuestion } from '../../store/questionsReducer';
 import "./NewQuestionForm.css";
 
 const NewQuestionForm = () => {
     const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
+    const [submitted, setSubmitted] = useState(false);
     const dispatch = useDispatch();
     const id = useSelector(state => state.session.user.id);
 
@@ -17,7 +19,10 @@ const NewQuestionForm = () => {
             body,
         }
         dispatch(createQuestion(data));
+        setSubmitted(true);
     }
+
+    if (submitted) return <Redirect to={`/`}/>
 
     return (
         <div className='new-question-form-container'>
@@ -29,7 +34,7 @@ const NewQuestionForm = () => {
                 <label>Body
                     <textarea value={body} onChange={e => setBody(e.target.value)} />
                 </label>
-                <button>Create</button>
+                <button>Ask</button>
             </form>
         </div>
     )

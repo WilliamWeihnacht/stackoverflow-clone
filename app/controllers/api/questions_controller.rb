@@ -3,15 +3,11 @@ class Api::QuestionsController < ApplicationController
     def index
         @questions = Question.all
         render json: @questions
-        #render :index
     end
     
     def create
         @question = Question.new(question_params)
-        # puts current_user
-        # @question.user_id = current_user.id
         if @question.save
-            #render :show
             render json: @question
         else
             render json: @question.errors.full_messages, status: 422
@@ -20,19 +16,20 @@ class Api::QuestionsController < ApplicationController
 
     def show
         @question = Question.find(params[:id])
-        render :show
+        render json: @question
     end
 
     def update
-        @question = Question.find_by(id: params[:id])
-        if @question.update(goal_params)
+        @question = Question.find(params[:id])
+        debugger
+        if @question.update(question_params)
+            render json: @question
         else
-            flash[:errors] = @goal.errors.full_messages
+            flash[:errors] = @question.errors.full_messages
         end
     end
 
     def destroy
-        # @goal = current_user.goals.find_by(id: params[:id])
         @question = Question.find_by(id: params[:id])
         if @question
             @question.answers.destroy_all

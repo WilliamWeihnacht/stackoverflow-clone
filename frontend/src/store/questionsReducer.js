@@ -43,6 +43,20 @@ export const createQuestion = (question) => async (dispatch) => {
     }
 }
 
+export const editQuestion = (question) => async (dispatch) => {
+  const res = await csrfFetch(`/api/questions/${question.id}`, {
+    method: "PATCH",
+    body: JSON.stringify(question)
+  });
+
+  if(res.ok) {
+    const data = await res.json();
+    dispatch(receiveQuestion(data))
+  } else {
+    console.log(res.statusText);
+  }
+}
+
 export const fetchQuestion = (questionId) => async (dispatch) => {
   const res = await fetch(`/api/questions/${questionId}`);
   if (res.ok) {

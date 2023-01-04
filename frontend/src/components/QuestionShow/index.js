@@ -1,47 +1,62 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchQuestion, getQuestion, deleteQuestion } from '../../store/questionsReducer';
+import { fetchQuestion, getQuestion, deleteQuestion, editQuestion } from '../../store/questionsReducer';
 import { createAnswer } from '../../store/answersReducer';
 import "./QuestionShow.css";
 
-
-
-
 const QuestionShow = () => {
     const dispatch = useDispatch();
-    const [body, setBody] = useState("");
+    const [answerBody, setAnswerBody] = useState("");
+    const [editing, setEditing] = useState(false);
+    const [deleted, setDeleted] = useState(false);
     const { questionId } = useParams();
-    const question = useSelector(state => Object.values(state.questions).find(q => q.id == questionId));
+    const question = useSelector(state => Object.values(state?.questions).find(q => q.id == questionId));
+    const [questionBody, setQuestionBody] = useState("");
+    const [title, setTitle] = useState("");
     const userId = useSelector(state => state.session.user.id);
 
-    // useEffect(() => {
-    //     dispatch(fetchQuestion(questionId));
-    // }, [dispatch, questionId]);
+    useEffect(() => {
+        dispatch(fetchQuestion(questionId));
+    }, [dispatch, questionId]);
 
     const convertDateTime = (date) => {
         const year = date.slice(0,4);
         const month = date.slice(5,7);
         const day = date.slice(8,10);
-        return month + "-" + day + "-" + year;
+        return day + "-" + month + "-" + year;
     }
 
-    const handleSubmit = async (e) => {
+    const handleSubmitAnswer = async (e) => {
         e.preventDefault();
+        console.log("submit answer")
         const data = {
             question_id: question.id,
             user_id: userId,
-            body,
+            answerBody,
         }
         dispatch(createAnswer(data));
     }
 
-    const editQuestion = () => {
+    const handleSubmitEdit = (e) => {
+        e.preventDefault();
+        console.log("submit edit")
+        const data = {
+            question_id: question.id,
+            user_id: userId,
+            title,
+            questionBody
+        }
+        dispatch(editQuestion(data))
+    } 
 
+    const handleDelete = (e) => {
+        dispatch(deleteQuestion(question.id));
+        setDeleted(true);
     }
 
-    const deleteThisQuestion = () => {
-        dispatch(deleteQuestion(question.id));
+    if (deleted) {
+        return <Redirect to="/"/>;
     }
 
     if (!question) {
@@ -54,28 +69,55 @@ const QuestionShow = () => {
 
     let updateLinks;
     if (userId === question.user_id) {
-        updateLinks = (<span><button onClick={editQuestion}>Edit</button><button onClick={deleteThisQuestion}>Delete</button></span>)
+        updateLinks = (<span><button onClick={()=>setEditing(!editing)}>Edit</button><button onClick={handleDelete}>Delete</button></span>)
     } else {
         updateLinks = (<></>)
     }
 
+    let questionContent;
+    if (editing) {
+       questionContent = (
+            <>
+            <form onSubmit={handleSubmitEdit}>
+                <div className='question-header'>
+                    <label>Title
+                        <input type="text" defaultValue={question.title} onChange={e => setTitle(e.target.value)}/>
+                    </label>
+                </div>
+                <div className='question-body'>
+                    <label>Body
+                        <textarea defaultValue={question.body} onChange={e => setQuestionBody(e.target.value)}></textarea>
+                    </label>
+                </div>
+                <button>Update</button>
+            </form>
+            </>
+       )
+    } else {
+        questionContent = (
+            <>
+                <div className='question-header'>
+                    <h1>{question.title}</h1>
+                    <span>Asked: {convertDateTime(question.created_at)}, Modified: {convertDateTime(question.updated_at)}</span>
+                    {updateLinks}
+                </div>
+                <div className='question-body'>
+                    <p>{question.body}</p>
+                </div>
+            </>
+        )
+    }
+
     return (
         <>
-            <div className='question-header'>
-                <h1>{question.title}</h1>
-                <span>Asked: {convertDateTime(question.created_at)}, Modified: {convertDateTime(question.updated_at)}</span>
-                {updateLinks}
-            </div>
-            <div className='question-body'>
-                <p>{question.body}</p>
-            </div>
+            {questionContent}
             <div className='question-answers-container'>
 
             </div>
             <div className='new-answer-form-container'>
                 <h1>Your Answer</h1>
-                <form onSubmit={handleSubmit}>
-                    <textarea onChange={e => setBody(e.target.value)} />
+                <form onSubmit={handleSubmitAnswer}>
+                    <textarea onChange={e => setAnswerBody(e.target.value)} />
                     <button>Submit</button>
                 </form>
             </div>
