@@ -25,12 +25,11 @@ const NewQuestionForm = () => {
 
     return (
         <div className='new-question-form-container'>
-            <h1>Ask a new question</h1>
             <form onSubmit={handleSubmit} className='new-question-form'>
-                <label>Title
+                <label>Title<br></br>
                     <input type="text" value={title} onChange={e => setTitle(e.target.value)} />
                 </label>
-                <label>Body
+                <label>Body<br></br>
                     <textarea value={body} onChange={e => setBody(e.target.value)} />
                 </label>
                 <button>Ask</button>
