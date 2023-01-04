@@ -1,0 +1,22 @@
+databases:
+  - name: stackoverflow-clone
+    user: stackoverflow-clone
+    plan: free
+    region: oregon
+
+services:
+  - type: web
+    name: stackoverflow-clone
+    plan: free
+    region: oregon
+    branch: main
+    env: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "rails s"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabse:
+          name: stackoverflow-clone
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false

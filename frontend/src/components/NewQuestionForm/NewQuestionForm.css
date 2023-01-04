@@ -1,5 +1,6 @@
 .new-question-form-container {
-    max-width: calc(((calc(97.2307692rem) / 12)) * 3);
+    /* 97.2307692rem */
+    max-width: calc(((calc(150rem) / 12)) * 3);
     min-width: 200px;
     margin-top: 190px;
     margin-left: auto;
@@ -29,4 +30,13 @@
     border: 0;
     background-color: hsl(206,100%,52%);
     color: white;
+}
+
+.new-question-form input {
+    width: 98%;
+}
+
+.new-question-form textarea {
+    width: 99%;
+    resize: vertical;
 }

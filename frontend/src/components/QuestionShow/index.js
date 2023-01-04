@@ -44,6 +44,7 @@ const QuestionShow = () => {
         }
         dispatch(editQuestion(data))
         setEditing(false);
+        dispatch(fetchQuestion(questionId));
     } 
 
     const handleDelete = (e) => {

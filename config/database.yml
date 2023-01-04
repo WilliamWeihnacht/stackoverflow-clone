@@ -80,7 +80,6 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
+  production:
   <<: *default
-  database: stackoverflow_clone_production
-  username: stackoverflow_clone
-  password: <%= ENV["STACKOVERFLOW_CLONE_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
