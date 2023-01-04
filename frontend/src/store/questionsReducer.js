@@ -9,13 +9,6 @@ export const requestQuestions = () => {
     return fetch('/api/questions');
 }
   
-export const postQuestion = (question) => {
-    return csrfFetch('/api/questions', {
-        method: 'POST',
-        body: JSON.stringify(question)
-    });
-}
-  
 export const requestQuestionDetail = id => {
     return fetch(`/api/questions/${id}`)
 }
@@ -33,10 +26,13 @@ export const fetchAllQuestions = () => async (dispatch) => {
 }
 
 export const createQuestion = (question) => async (dispatch) => {
-    const res = await postQuestion(question);
-    let data;
+    const res = await csrfFetch('/api/questions', {
+      method: 'POST',
+      body: JSON.stringify(question)
+    });
+
     if (res.ok) {
-      data = await res.json();
+      const data = await res.json();
       dispatch(receiveQuestion(data))
     } else {
       console.log(res.statusText);
@@ -44,7 +40,7 @@ export const createQuestion = (question) => async (dispatch) => {
 }
 
 export const editQuestion = (question) => async (dispatch) => {
-  const res = await csrfFetch(`/api/questions/${question.id}`, {
+  const res = await csrfFetch(`/api/questions/${question.question_id}`, {
     method: "PATCH",
     body: JSON.stringify(question)
   });

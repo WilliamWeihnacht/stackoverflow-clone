@@ -29,23 +29,18 @@ const QuestionShow = () => {
 
     const handleSubmitAnswer = async (e) => {
         e.preventDefault();
-        console.log("submit answer")
         const data = {
-            question_id: question.id,
-            user_id: userId,
-            answerBody,
+            body: answerBody
         }
         dispatch(createAnswer(data));
     }
 
     const handleSubmitEdit = (e) => {
         e.preventDefault();
-        console.log("submit edit")
         const data = {
             question_id: question.id,
-            user_id: userId,
             title,
-            questionBody
+            body: questionBody
         }
         dispatch(editQuestion(data))
     } 

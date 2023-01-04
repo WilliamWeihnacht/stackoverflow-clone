@@ -14,7 +14,6 @@ const NewQuestionForm = () => {
     const handleSubmit = async e => {
         e.preventDefault()
         const data = {
-            user_id: id,
             title,
             body,
         }
