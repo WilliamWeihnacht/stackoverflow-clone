@@ -1,12 +1,12 @@
 databases:
-  - name: stackoverflow-clone
-    user: stackoverflow-clone
+  - name: stackoverflowclone
+    user: stackoverflowclone
     plan: free
     region: oregon
 
 services:
   - type: web
-    name: stackoverflow-clone
+    name: stackoverflowclone
     plan: free
     region: oregon
     branch: main
@@ -15,8 +15,8 @@ services:
     startCommand: "rails s"
     envVars:
       - key: DATABASE_URL
-        fromDatabse:
-          name: stackoverflow-clone
+        fromDatabase:
+          name: stackoverflowclone
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
