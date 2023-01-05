@@ -2,7 +2,7 @@ class Api::QuestionsController < ApplicationController
 
     def index
         @questions = Question.all
-        render json: @questions
+        render :index
     end
     
     def create
@@ -17,7 +17,7 @@ class Api::QuestionsController < ApplicationController
 
     def show
         @question = Question.find(params[:id])
-        render json: @question
+        render :show
     end
 
     def update

@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import { Link, useParams, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchQuestion, getQuestion, deleteQuestion, editQuestion } from '../../store/questionsReducer';
-import { createAnswer } from '../../store/answersReducer';
+import { createAnswer, fetchAnswers } from '../../store/answersReducer';
 import "./QuestionShow.css";
+import AnswerIndexItem from '../AnswerIndexItem';
 
 const QuestionShow = () => {
     const dispatch = useDispatch();
@@ -13,7 +14,8 @@ const QuestionShow = () => {
     const [editing, setEditing] = useState(false);
     const [deleted, setDeleted] = useState(false);
     const { questionId } = useParams();
-    const question = useSelector(state => Object.values(state?.questions).find(q => q.id == questionId));
+    const question = useSelector(state => state.questions[questionId]);
+    const answers = useSelector(state => Object.values(state.answers));
     const sessionUser = useSelector(state => state.session.user);
     const userId = useSelector(state => state.session?.user?.id);
 
@@ -21,7 +23,16 @@ const QuestionShow = () => {
         dispatch(fetchQuestion(questionId));
     }, [dispatch, questionId, editing]);
 
-    if (!sessionUser) return <Redirect to={"/splash"}/>
+    if (!sessionUser) return <Redirect to="/splash"/>
+    if (deleted) return <Redirect to="/"/>;
+
+    if (!question) {
+        return (
+            <div className='question-header'>
+                <h1>Question not found</h1>
+            </div>
+        )
+    }
 
     const convertDateTime = (date) => {
         const year = date.slice(0,4);
@@ -32,7 +43,9 @@ const QuestionShow = () => {
 
     const handleSubmitAnswer = async (e) => {
         e.preventDefault();
+        setAnswerBody("");
         const data = {
+            question_id: question.id,
             body: answerBody
         }
         dispatch(createAnswer(data));
@@ -55,20 +68,8 @@ const QuestionShow = () => {
         setDeleted(true);
     }
 
-    if (deleted) {
-        return <Redirect to="/"/>;
-    }
-
-    if (!question) {
-        return (
-            <div className='question-header'>
-                <h1>Question not found</h1>
-            </div>
-        )
-    }
-
     let updateLinks;
-    if (userId === question.user_id) {
+    if (userId === question.userId) {
         updateLinks = (<span><button onClick={()=>setEditing(!editing)}>Edit</button><button onClick={handleDelete}>Delete</button></span>)
     } else {
         updateLinks = (<></>)
@@ -98,7 +99,7 @@ const QuestionShow = () => {
             <>
                 <div className='question-header'>
                     <h1>{question.title}</h1>
-                    <span>Asked: {convertDateTime(question.created_at)}, Modified: {convertDateTime(question.updated_at)}</span>
+                    <span>Asked: {convertDateTime(question.createdAt)}, Modified: {convertDateTime(question.updatedAt)}</span>
                     {updateLinks}
                 </div>
                 <div className='question-body'>
@@ -112,7 +113,9 @@ const QuestionShow = () => {
         <>
             {questionContent}
             <div className='question-answers-container'>
-
+                <ul>
+                    {answers?.map((answer, i) => <AnswerIndexItem answer={answer} key={i}/>)}
+                </ul>
             </div>
             <div className='new-answer-form-container'>
                 <h1>Your Answer</h1>

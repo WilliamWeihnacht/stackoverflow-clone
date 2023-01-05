@@ -1,8 +1,8 @@
 import csrfFetch from "./csrf";
 
-const RECEIVE_QUESTION = 'RECEIVE_QUESTION';
-const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
-const REMOVE_QUESTION = 'REMOVE_QUESTION';
+export const RECEIVE_QUESTION = 'RECEIVE_QUESTION';
+export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
+export const REMOVE_QUESTION = 'REMOVE_QUESTION';
 
 //fetch util methods
 export const requestQuestions = () => {
@@ -58,6 +58,8 @@ export const fetchQuestion = (questionId) => async (dispatch) => {
   if (res.ok) {
     const question = await res.json();
     dispatch(receiveQuestion(question));
+  } else {
+    console.log(res.statusText);
   }
 }
 
@@ -65,9 +67,10 @@ export const deleteQuestion = (id) => async (dispatch) => {
   const res = await csrfFetch(`/api/questions/${id}`, {
     method: "DELETE"
   });
-
   if (res.ok) {
     dispatch(removeQuestion(id));
+  } else {
+    console.log(res.statusText);
   }
 }
 
@@ -77,9 +80,9 @@ export const receiveQuestions = questions => ({
     questions
 });
 
-export const receiveQuestion = question => ({
+export const receiveQuestion = payload => ({
     type: RECEIVE_QUESTION,
-    question
+    payload
 });
 
 export const removeQuestion = questionId => ({
@@ -89,23 +92,17 @@ export const removeQuestion = questionId => ({
 
 //reducer
 const questionReducer = (state = {}, action) => {
-    // Object.freeze(state);
+    Object.freeze(state);
     const nextState = { ...state };
   
     switch (action.type) {
       case RECEIVE_QUESTION:
-        nextState[action.question.id] = action.question;
-        return nextState;
+        nextState[action.payload.question.id] = action.payload.question;
+        return nextState
       case RECEIVE_QUESTIONS:
-        // return {...nextState, ...action.questions}
-        return {...action.questions}
+        return {...nextState, ...action.questions}
       case REMOVE_QUESTION:
-        Object.entries(nextState).forEach(el => {
-          if (el[1].id == action.questionId) {
-            delete nextState[el[0]]
-          }
-        });
-        // delete nextState[action.questionId];
+        delete nextState[action.questionId];
         return nextState;
       default:
         return state;

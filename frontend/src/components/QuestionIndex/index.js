@@ -12,7 +12,7 @@ const QuestionIndex = props => {
 
     useEffect(()=>{
         dispatch(fetchAllQuestions())
-    },[dispatch])
+    },[])
 
     if (!sessionUser) return <Redirect to={"/splash"}/>;
 
