@@ -14,11 +14,14 @@ const QuestionShow = () => {
     const [deleted, setDeleted] = useState(false);
     const { questionId } = useParams();
     const question = useSelector(state => Object.values(state?.questions).find(q => q.id == questionId));
-    const userId = useSelector(state => state.session.user.id);
+    const sessionUser = useSelector(state => state.session.user);
+    const userId = useSelector(state => state.session?.user?.id);
 
     useEffect(() => {
         dispatch(fetchQuestion(questionId));
     }, [dispatch, questionId, editing]);
+
+    if (!sessionUser) return <Redirect to={"/splash"}/>
 
     const convertDateTime = (date) => {
         const year = date.slice(0,4);

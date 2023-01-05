@@ -5,11 +5,11 @@ import { createQuestion } from '../../store/questionsReducer';
 import "./NewQuestionForm.css";
 
 const NewQuestionForm = () => {
+    const dispatch = useDispatch();
     const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
     const [submitted, setSubmitted] = useState(false);
-    const dispatch = useDispatch();
-    const id = useSelector(state => state.session.user.id);
+    const sessionUser = useSelector(state => state.session.user);
 
     const handleSubmit = async e => {
         e.preventDefault()
@@ -21,7 +21,7 @@ const NewQuestionForm = () => {
         setSubmitted(true);
     }
 
-    if (submitted) return <Redirect to={`/`}/>
+    if (!sessionUser || submitted) return <Redirect to={`/`}/>
 
     return (
         <div className='new-question-form-container'>

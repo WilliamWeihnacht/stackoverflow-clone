@@ -1,17 +1,20 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { fetchAllQuestions } from '../../store/questionsReducer';
 import QuestionIndexItem from '../QuestionIndexItem';
 import "./QuestionIndex.css";
 
 const QuestionIndex = props => {
-    const questions = useSelector(state => Object.values(state.questions));
     const dispatch = useDispatch();
+    const questions = useSelector(state => Object.values(state.questions));
+    const sessionUser = useSelector(state => state.session.user);
 
     useEffect(()=>{
         dispatch(fetchAllQuestions())
     },[dispatch])
+
+    if (!sessionUser) return <Redirect to={"/splash"}/>;
 
     return (
         <div className='question-feed'>

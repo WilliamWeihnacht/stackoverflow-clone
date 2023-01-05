@@ -6,6 +6,7 @@ import Navigation from "./components/Navigation";
 import QuestionIndex from "./components/QuestionIndex";
 import NewQuestionForm from "./components/NewQuestionForm";
 import QuestionShow from "./components/QuestionShow";
+import SplashPage from "./components/SplashPage";
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
         </Route>
         <Route exact path="/questions/:questionId">
           <QuestionShow />
+        </Route>
+        <Route path="/splash">
+          <SplashPage/>
         </Route>
       </Switch>
     </>
