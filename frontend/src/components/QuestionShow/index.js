@@ -43,12 +43,14 @@ const QuestionShow = () => {
 
     const handleSubmitAnswer = async (e) => {
         e.preventDefault();
-        setAnswerBody("");
+
         const data = {
             question_id: question.id,
             body: answerBody
         }
         dispatch(createAnswer(data));
+        setAnswerBody("");
+        dispatch(fetchQuestion(questionId));
     }
 
     const handleSubmitEdit = (e) => {
