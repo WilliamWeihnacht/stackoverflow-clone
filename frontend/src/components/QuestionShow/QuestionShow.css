@@ -1,3 +1,45 @@
-.question-header {
+.question-page-container {
+    margin: auto;
     margin-top: 50px;
+    width: 70%;
+}
+
+.question-header {
+    border-bottom: 1px gray solid;
+    padding: 5px;
+}
+
+.question-header h1 {
+    margin: 0;
+    padding-top: 50px;
+}
+
+.question-header a {
+    text-decoration: underline;
+    padding-left: 5px;
+}
+
+.question-conetent-container {
+    display: grid;
+}
+
+.question-body {
+    display: flex;
+    margin: 10px;
+}
+
+.question-body p {
+    margin: 0;
+    padding: 10px;
+    padding-top: 0;
+    width: 80%;
+}
+
+.question-answers-container ul {
+
+}
+
+.question-answers-container li {
+    list-style: none;
+    border-bottom: 1px solid gray;
 }

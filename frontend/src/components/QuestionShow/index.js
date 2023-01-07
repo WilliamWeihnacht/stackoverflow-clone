@@ -5,6 +5,7 @@ import { fetchQuestion, getQuestion, deleteQuestion, editQuestion } from '../../
 import { createAnswer, fetchAnswers } from '../../store/answersReducer';
 import "./QuestionShow.css";
 import AnswerIndexItem from '../AnswerIndexItem';
+import VoteButtons from '../VoteButtons';
 
 const QuestionShow = () => {
     const dispatch = useDispatch();
@@ -38,7 +39,7 @@ const QuestionShow = () => {
         const year = date.slice(0,4);
         const month = date.slice(5,7);
         const day = date.slice(8,10);
-        return day + "-" + month + "-" + year;
+        return month + "-" + day + "-" + year;
     }
 
     const handleSubmitAnswer = async (e) => {
@@ -72,7 +73,7 @@ const QuestionShow = () => {
 
     let updateLinks;
     if (userId === question.userId) {
-        updateLinks = (<span><button onClick={()=>setEditing(!editing)}>Edit</button><button onClick={handleDelete}>Delete</button></span>)
+        updateLinks = (<span><a onClick={()=>setEditing(!editing)}>Edit</a><a onClick={handleDelete}>Delete</a></span>)
     } else {
         updateLinks = (<></>)
     }
@@ -88,11 +89,15 @@ const QuestionShow = () => {
                     </label>
                 </div>
                 <div className='question-body'>
+                    <div className='question-voting-container'>
+                        <VoteButtons post={question}/>
+                    </div>
                     <label>Body
                         <textarea defaultValue={question.body} onChange={e => setQuestionBody(e.target.value)}></textarea>
                     </label>
                 </div>
                 <button>Update</button>
+                <button onClick={() => setEditing(false)}>Cancel</button>
             </form>
             </>
        )
@@ -105,6 +110,9 @@ const QuestionShow = () => {
                     {updateLinks}
                 </div>
                 <div className='question-body'>
+                    <div className='question-voting-container'>
+                        <VoteButtons post={question}/>
+                    </div>
                     <p>{question.body}</p>
                 </div>
             </>
@@ -112,8 +120,13 @@ const QuestionShow = () => {
     }
 
     return (
-        <>
-            {questionContent}
+        <div className='question-page-container'>
+            <div className='question-content-container'>
+                {questionContent}
+            </div>
+            <div id='answer-header-bar'>
+                <h2>{answers.length} {answers.length === 1 ? "Answer" : "Answers"}</h2>
+            </div>
             <div className='question-answers-container'>
                 <ul>
                     {answers?.map((answer, i) => <AnswerIndexItem answer={answer} key={i}/>)}
@@ -126,7 +139,7 @@ const QuestionShow = () => {
                     <button>Submit</button>
                 </form>
             </div>
-        </>
+        </div>
     )
 
 }

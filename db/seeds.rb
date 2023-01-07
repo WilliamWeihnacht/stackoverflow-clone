@@ -148,17 +148,26 @@ ApplicationRecord.transaction do
 
 
     puts "Creating question votes..."
-    QuestionVote.create!(
-      user_id: 1,
-      question_id: 1,
-      upvote: true
-    )
 
-    QuestionVote.create!(
-      user_id: 1,
-      question_id: 2,
-      upvote: false
-    )
+    i = 1
+    while i <= 10
+      QuestionVote.create!(
+        user_id: i,
+        question_id: 1,
+        upvote: true
+      )
+      i += 1
+    end
+
+    i = 1
+    while i <= 10
+      QuestionVote.create!(
+        user_id: i,
+        question_id: 2,
+        upvote: i%2 == 0
+      )
+      i += 1
+    end
   
     puts "Done!"
 end

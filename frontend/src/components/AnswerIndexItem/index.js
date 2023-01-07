@@ -1,5 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { deleteAnswer } from "../../store/answersReducer";
+import VoteButtons from '../VoteButtons';
+import './AnswerIndexItem.css';
 
 
 const AnswerIndexItem = ({ answer }) => {
@@ -16,7 +18,8 @@ const AnswerIndexItem = ({ answer }) => {
     }
 
     return (
-        <li>
+        <li className="answer-index-item">
+            <VoteButtons post={answer}/>
             {answer.body}
             <br></br>
             {answer.user}

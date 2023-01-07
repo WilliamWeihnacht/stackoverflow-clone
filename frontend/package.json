@@ -37,6 +37,7 @@
     ]
   },
   "devDependencies": {
+    "postcss-normalize": "^10.0.1",
     "redux-logger": "^3.0.6"
   }
 }

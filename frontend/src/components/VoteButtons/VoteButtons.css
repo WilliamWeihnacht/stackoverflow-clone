@@ -1,0 +1,29 @@
+.vote-buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50px;
+}
+
+.vote-buttons-container button {
+    padding: 15px;
+    background-size: 100% 100%;
+    color: transparent;
+    background-color: transparent;
+}
+
+#upvote {
+    background-image: url(../../img/gray-triangle-up.png);
+}
+
+#upvote-active {
+    background-image: url(../../img/orange-triangle-up.png);
+}
+
+#downvote {
+    background-image: url(../../img/gray-triangle-down.png);
+}
+
+#downvote-active {
+    background-image: url(../../img/blue-triangle-down.png);
+}

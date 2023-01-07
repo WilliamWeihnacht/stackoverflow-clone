@@ -1,4 +1,5 @@
 class Api::QuestionsController < ApplicationController
+    before_action :require_logged_in
 
     def index
         @questions = Question.all
@@ -17,6 +18,7 @@ class Api::QuestionsController < ApplicationController
 
     def show
         @question = Question.find(params[:id])
+        @user_id = current_user.id
         render :show
     end
 

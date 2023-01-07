@@ -16,13 +16,6 @@ if (process.env.NODE_ENV !== 'production') {
   window.sessionActions = sessionActions;
 }
 
-// ReactDOM.render(
-//   <React.StrictMode>
-//     <Root />
-//   </React.StrictMode>,
-//   document.getElementById('root')
-// );
-
 const renderApplication = () => {
   ReactDOM.render(
     <React.StrictMode>

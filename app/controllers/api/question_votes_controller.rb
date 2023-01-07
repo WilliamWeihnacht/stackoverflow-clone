@@ -2,7 +2,7 @@ class Api::QuestionVotesController < ApplicationController
 
     def create
         @question_vote = QuestionVote.new(question_vote_params)
-        @question.user_id = current_user.id
+        @question_vote.user_id = current_user.id
         if @question_vote.save
             render json: @question_vote
         else
