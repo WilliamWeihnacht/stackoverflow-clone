@@ -11,11 +11,17 @@ class Api::QuestionVotesController < ApplicationController
     end
 
     def destroy
-
+        @question_vote = QuestionVote.find_by(id: params[:id])
+        if @question_vote
+            @question_vote.delete
+        end
     end
 
     def update
-
+        @question_vote = QuestionVote.find_by(question_id: params[:question_id])
+        if @question_vote.update(question_vote_params)
+            render json: @question_vote
+        end
     end
 
     private

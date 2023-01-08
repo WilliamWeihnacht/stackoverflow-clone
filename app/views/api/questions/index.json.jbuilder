@@ -4,5 +4,7 @@
         json.user question.user.username
         json.answer_count question.answers.length
         json.vote_count question.votes.length
+        json.user_vote question.votes.where(user_id: current_user.id).first
+        json.score question.votes.where(upvote: true).length - question.votes.where(upvote: false).length
     end
 end

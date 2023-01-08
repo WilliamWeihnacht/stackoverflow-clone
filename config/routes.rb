@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :questions
     resources :answers, only: [:create, :destroy, :update]
     resources :question_votes, only: [:create, :destroy, :update]
+    resources :answer_votes, only: [:create, :destroy, :update]
   end
 
   get '*path', to: 'static_pages#frontend'

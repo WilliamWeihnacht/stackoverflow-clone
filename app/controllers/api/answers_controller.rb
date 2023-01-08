@@ -13,6 +13,7 @@ class Api::AnswersController < ApplicationController
     def destroy
         @answer = Answer.find_by(id: params[:id])
         if @answer
+            @answer.votes.destroy_all
             @answer.delete
         end
     end

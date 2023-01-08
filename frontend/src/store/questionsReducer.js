@@ -1,4 +1,5 @@
 import csrfFetch from "./csrf";
+import { RECEIVE_QUESTION_VOTE, REMOVE_QUESTION_VOTE, UPDATE_QUESTION_VOTE } from "./questionVotesReducer";
 
 export const RECEIVE_QUESTION = 'RECEIVE_QUESTION';
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
@@ -104,6 +105,15 @@ const questionReducer = (state = {}, action) => {
       case REMOVE_QUESTION:
         delete nextState[action.questionId];
         return nextState;
+      case RECEIVE_QUESTION_VOTE:
+        nextState[action.payload.question_id].userVote = action.payload
+        return nextState
+      case REMOVE_QUESTION_VOTE:
+        nextState[action.questionVote.question_id].userVote = null
+        return nextState
+      case UPDATE_QUESTION_VOTE:
+        nextState[action.questionVote.question_id].userVote = action.questionVote
+        return nextState
       default:
         return state;
     };

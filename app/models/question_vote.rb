@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: question_votes
+#
+#  id          :bigint           not null, primary key
+#  user_id     :bigint           not null
+#  question_id :bigint           not null
+#  upvote      :boolean          not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
 class QuestionVote < ApplicationRecord
 
     validates :user_id, :question_id, presence: true

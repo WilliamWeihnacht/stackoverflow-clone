@@ -9,10 +9,11 @@
 ApplicationRecord.transaction do 
     puts "Destroying tables..."
     # Unnecessary if using `rails db:seed:replant`
-    User.destroy_all
+    QuestionVote.destroy_all
+    AnswerVote.destroy_all
     Question.destroy_all
     Answer.destroy_all
-    QuestionVote.destroy_all
+    User.destroy_all
   
     puts "Resetting primary keys..."
     # For easy testing, so that after seeding, the first `User` has `id` of 1
@@ -20,6 +21,7 @@ ApplicationRecord.transaction do
     ApplicationRecord.connection.reset_pk_sequence!('questions')
     ApplicationRecord.connection.reset_pk_sequence!('answers')
     ApplicationRecord.connection.reset_pk_sequence!('question_votes')
+    ApplicationRecord.connection.reset_pk_sequence!('answer_votes')
   
     puts "Creating users..."
     # Create one user with an easy to remember username, email, and password:
@@ -168,6 +170,24 @@ ApplicationRecord.transaction do
       )
       i += 1
     end
+
+    i = 1
+    while i <= 10
+      QuestionVote.create!(
+        user_id: i,
+        question_id: 3,
+        upvote: false
+      )
+      i += 1
+    end
+
+    puts "Creating answer votes..."
+
+    AnswerVote.create!(
+      user_id: 1,
+      answer_id: 1,
+      upvote: true
+    )
   
     puts "Done!"
 end
