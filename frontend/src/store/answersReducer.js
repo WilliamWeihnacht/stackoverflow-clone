@@ -1,3 +1,4 @@
+import { RECEIVE_ANSWER_VOTE, REMOVE_ANSWER_VOTE, UPDATE_ANSWER_VOTE } from "./answerVotesReducer";
 import csrfFetch from "./csrf";
 import { RECEIVE_QUESTION, RECEIVE_QUESTIONS, REMOVE_QUESTION } from "./questionsReducer";
 
@@ -83,6 +84,15 @@ const answerReducer = (state = {}, action) => {
 			Object.entries(nextState).forEach(element => {
 				if (element.questionId === action.questionId) delete nextState[element.id]
 			});
+		case RECEIVE_ANSWER_VOTE:
+			nextState[action.payload.answer_id].userVote = action.payload;
+			return nextState
+		case REMOVE_ANSWER_VOTE:
+			nextState[action.answerVote.answer_id].userVote = null;
+			return nextState
+		case UPDATE_ANSWER_VOTE:
+			nextState[action.answerVote.answer_id].userVote = action.answerVote;
+			return nextState
 		default:
 			return state;
 	};

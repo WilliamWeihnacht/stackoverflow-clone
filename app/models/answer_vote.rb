@@ -11,7 +11,7 @@
 #
 class AnswerVote < ApplicationRecord
 
-    validates :user_id, :answer_id, :upvote, presence: true
+    validates :user_id, :answer_id, presence: true
     validates :user_id, uniqueness: { scope: :answer_id }
     validates :answer_id, uniqueness: { scope: :user_id }
 

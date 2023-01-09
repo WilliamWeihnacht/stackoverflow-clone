@@ -10,12 +10,18 @@ class Api::AnswerVotesController < ApplicationController
         end
     end
 
-    def update
-
+    def destroy
+        @answer_vote = AnswerVote.find_by(id: params[:id])
+        if @answer_vote
+            @answer_vote.delete
+        end
     end
 
-    def destroy
-
+    def update
+        @answer_vote = AnswerVote.find_by(answer_id: params[:answer_id])
+        if @answer_vote.update(answer_vote_params)
+            render json: @answer_vote
+        end
     end
 
     private
