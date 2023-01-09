@@ -12,18 +12,18 @@ const AnswerIndexItem = ({ answer }) => {
         dispatch(deleteAnswer(answer.id))
     }
 
-    let deleteButton = <></>
+    let userContent = <a>{answer.user}</a>
     if (sessionUser.id === answer.userId) {
-        deleteButton = <button onClick={handleDelete}>delete</button>
+        userContent = <a onClick={handleDelete}>Delete this comment</a>
     }
 
     return (
         <li className="answer-index-item">
             <VoteButtons post={answer}/>
-            {answer.body}
-            <br></br>
-            {answer.user}
-            {deleteButton}
+            <div className="answer-content">
+                <p>{answer.body}</p>
+                <span>{userContent}</span>
+            </div>
         </li>
     )
 }

@@ -10,7 +10,7 @@ const QuestionIndexItem = ({ question }) => {
                 <span>{question.answerCount} {question.answerCount === 1 ? "Answer" : "Answers"}</span>
                 <span>{question.voteCount} {question.voteCount === 1 ? "Vote" : "Votes"}</span>
             </div>
-            <Link id='user-link'>{question.user}</Link>
+            <a id='user-link'>{question.user}</a>
         </li>
     )
 }

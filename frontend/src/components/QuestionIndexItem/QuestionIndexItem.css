@@ -31,4 +31,6 @@
 
 #user-link {
     float: right;
+    text-decoration: underline;
+    color: black;
 }

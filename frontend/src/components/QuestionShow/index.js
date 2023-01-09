@@ -84,7 +84,7 @@ const QuestionShow = () => {
             <>
             <form onSubmit={handleSubmitEdit}>
                 <div className='question-header'>
-                    <label>Title
+                    <label><h1>Title</h1>
                         <input type="text" defaultValue={question.title} onChange={e => setTitle(e.target.value)}/>
                     </label>
                 </div>
@@ -106,7 +106,7 @@ const QuestionShow = () => {
             <>
                 <div className='question-header'>
                     <h1>{question.title}</h1>
-                    <span>Asked: {convertDateTime(question.createdAt)}, Modified: {convertDateTime(question.updatedAt)}</span>
+                    <span><strong>Asked</strong> {convertDateTime(question.createdAt)}, <strong>Modified</strong> {convertDateTime(question.updatedAt)}</span>
                     {updateLinks}
                 </div>
                 <div className='question-body'>

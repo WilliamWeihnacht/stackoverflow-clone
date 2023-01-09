@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import './Navigation.css';
+import SearchBar from '../SearchBar';
 
 function Navigation() {
   const dispatch = useDispatch();
@@ -34,7 +35,8 @@ function Navigation() {
         <NavLink exact to="/"><span className='logo-image'>Stack Overflow</span></NavLink>
       </li>
       <li id='search-li'>
-        <input placeholder='Search...'></input>
+        <SearchBar/>
+        {/* <input placeholder='Search...'></input> */}
       </li>
       <li id='session-li'>
         {sessionLinks}

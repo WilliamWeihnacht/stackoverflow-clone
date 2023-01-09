@@ -39,6 +39,11 @@ class Api::QuestionsController < ApplicationController
         end
     end
 
+    def search
+        @results = Question.where("LOWER(title) LIKE ?", "%#{params[:query].downcase}%").limit(10)
+        render json: @results
+    end
+
     private
     def question_params
         params.require(:question).permit(:title, :body)
