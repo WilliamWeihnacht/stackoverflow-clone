@@ -1,4 +1,5 @@
 import { useState } from "react";
+import './SearchBar.css';
 
 
 const SearchBar = () => {
@@ -8,16 +9,16 @@ const SearchBar = () => {
         const res = await fetch(`/api/search?query=${e.target.value}`);
         if (res.ok) {
             const data = await res.json();
-            console.log(data);
             setResults(data)
         }
     }
 
     return (
-        <>
-            <input type="text" placeholder="Search..." onChange={suggestResult}></input>
-            <ul>{results.map((el,i)=><li key={i}>{el.title}</li>)}</ul>
-        </>
+        <div id="searchbar-wrapper">
+            <input id="searchbar" type="text" placeholder="Search..." onChange={suggestResult}></input>
+            {/* <select id="searchbar-parent" multiple>{results.map((el,i)=><option id="searchbar-child" key={i}>{el.title}</option>)}</select> */}
+            <ul id="searchbar-parent">{results.map((el,i)=><li id="searchbar-child" key={i}>{el.title}</li>)}</ul>
+        </div>
     )
 }
 

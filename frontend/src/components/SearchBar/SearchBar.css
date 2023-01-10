@@ -1,0 +1,25 @@
+#searchbar {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#searchbar-parent {
+    margin-left: 5px;
+    margin-right: 5px;
+    width: inherit;
+    position: fixed;
+    box-sizing: border-box;
+}
+
+#searchbar-parent:last-child {
+    border-bottom: 1px solid black;
+}
+
+#searchbar-child {
+    width: inherit;
+    border: 1px solid black;
+    border-bottom: 0;
+    list-style: none;
+    background-color: white;
+    padding-right: 0;
+}
