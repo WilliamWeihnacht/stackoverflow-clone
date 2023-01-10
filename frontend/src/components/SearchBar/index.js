@@ -1,23 +1,21 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { fetchSearchQuestions } from "../../store/questionsReducer";
 import './SearchBar.css';
 
 
 const SearchBar = () => {
-    const [results, setResults] = useState([]);
+    const dispatch = useDispatch();
 
-    const suggestResult = async (e) => {
-        const res = await fetch(`/api/search?query=${e.target.value}`);
-        if (res.ok) {
-            const data = await res.json();
-            setResults(data)
+    const handleSearch = async (e) => {
+        if (e.key === 'Enter') {
+            dispatch(fetchSearchQuestions(e.target.value));
         }
     }
 
     return (
         <div id="searchbar-wrapper">
-            <input id="searchbar" type="text" placeholder="Search..." onChange={suggestResult}></input>
-            {/* <select id="searchbar-parent" multiple>{results.map((el,i)=><option id="searchbar-child" key={i}>{el.title}</option>)}</select> */}
-            <ul id="searchbar-parent">{results.map((el,i)=><li id="searchbar-child" key={i}>{el.title}</li>)}</ul>
+            <input id="searchbar" type="text" placeholder="Search..." onKeyDown={handleSearch}></input>
         </div>
     )
 }

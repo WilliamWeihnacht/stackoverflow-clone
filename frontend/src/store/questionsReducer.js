@@ -26,6 +26,14 @@ export const fetchAllQuestions = () => async (dispatch) => {
     dispatch(receiveQuestions(questions));
 }
 
+export const fetchSearchQuestions = (searchTerm) => async (dispatch) => {
+  const res = await fetch(`/api/search?query=${searchTerm}`);
+  if (res.ok) {
+      const data = await res.json();
+      dispatch(receiveQuestions(data));
+  }
+}
+
 export const createQuestion = (question) => async (dispatch) => {
     const res = await csrfFetch('/api/questions', {
       method: 'POST',
@@ -91,6 +99,10 @@ export const removeQuestion = questionId => ({
     questionId
 });
 
+// export const receiveQuestionSearch = questions => ({
+//   type: 
+// })
+
 //reducer
 const questionReducer = (state = {}, action) => {
     Object.freeze(state);
@@ -101,7 +113,8 @@ const questionReducer = (state = {}, action) => {
         nextState[action.payload.question.id] = action.payload.question;
         return nextState
       case RECEIVE_QUESTIONS:
-        return {...nextState, ...action.questions}
+        // return {...nextState, ...action.questions}
+        return {...action.questions}
       case REMOVE_QUESTION:
         delete nextState[action.questionId];
         return nextState;

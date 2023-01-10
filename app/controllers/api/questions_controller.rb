@@ -1,7 +1,11 @@
 class Api::QuestionsController < ApplicationController
 
     def index
-        @questions = Question.all
+        # Question.joins(:votes)
+        # QuestionVote.joins(:question)
+        # QuestionVote.left_outer_joins(:question)
+        # Question.connection.select_all('SELECT * FROM questions WHERE ')
+        @questions = Question.all#.order() order by score
         render :index
     end
     
@@ -39,8 +43,9 @@ class Api::QuestionsController < ApplicationController
     end
 
     def search
-        @results = Question.where("LOWER(title) LIKE ?", "%#{params[:query].downcase}%").limit(10)
-        render json: @results
+        @questions = Question.where("LOWER(title) LIKE ?", "%#{params[:query].downcase}%")#.limit(10)
+        # render json: @questions
+        render :index
     end
 
     private

@@ -8,13 +8,30 @@ import "./QuestionIndex.css";
 const QuestionIndex = props => {
     const dispatch = useDispatch();
     const questions = useSelector(state => Object.values(state.questions));
-    const sessionUser = useSelector(state => state.session.user);
 
     useEffect(()=>{
         dispatch(fetchAllQuestions())
     },[])
 
-    if (!sessionUser) return <Redirect to={"/splash"}/>;
+    console.log(questions)
+
+    if (questions.length === 0) {
+        return (
+            <div className='question-feed'>
+                <div id='header-box'>
+                    <h1>Top Questions</h1>
+                    <NavLink to={"/questions/new"}><button>New Question</button></NavLink>
+                </div>
+                <h1 id='no-results-h1'>No Results...</h1>
+            </div>
+        )
+    }
+
+    questions.sort((a,b)=>{
+        if (a.score < b.score) return 1
+        if (a.score > b.score) return -1
+        return 0
+    });
 
     return (
         <div className='question-feed'>
