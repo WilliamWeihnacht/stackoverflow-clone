@@ -20,7 +20,7 @@ function SignupFormPage() {
     if (password === confirmPassword) {
       setErrors([]);
       return dispatch(sessionActions.signup({ email, username, password }))
-        .catch(async (res) => {
+      .catch(async (res) => {
         let data;
         try {
           // .clone() essentially allows you to read the response body twice

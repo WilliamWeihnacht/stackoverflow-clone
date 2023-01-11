@@ -1,22 +1,37 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink, Redirect } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { fetchAllQuestions } from '../../store/questionsReducer';
 import QuestionIndexItem from '../QuestionIndexItem';
 import "./QuestionIndex.css";
 
 const QuestionIndex = props => {
     const dispatch = useDispatch();
+    const [qOrder, setQOrder] = useState("score")
     const questions = useSelector(state => Object.values(state.questions));
-
-    questions.sort((a,b)=>{
-        if (a.score < b.score) return 1
-        if (a.score > b.score) return -1
-        return 0
-    });
-
-    const [orderedQuestions,setOrderedQuestions] = useState(questions);
     let arr = [...questions];
+
+    if (qOrder === "score") {
+        arr.sort((a,b)=>{
+            if (a.score < b.score) return 1
+            if (a.score > b.score) return -1
+            return 0
+        });
+    } else if (qOrder === "recent") {
+        arr.sort((a,b)=>{
+            if (a.id < b.id) return 1
+            if (a.id > b.id) return -1
+            return 0
+        });
+    } else if (qOrder === "modified") {
+        arr.sort((a,b)=>{
+            const dateA = new Date(a.updatedAt);
+            const dateB = new Date(b.updatedAt);
+            if (dateA < dateB) return 1
+            if (dateA > dateB) return -1
+            return 0
+        });
+    }
 
     useEffect(()=>{
         dispatch(fetchAllQuestions());
@@ -35,35 +50,7 @@ const QuestionIndex = props => {
     }
 
     const handleOptionsChange = (e) => {
-        if (e.target.value === "score") {
-            arr.sort((a,b)=>{
-                if (a.score < b.score) return 1
-                if (a.score > b.score) return -1
-                return 0
-            });
-        } else if (e.target.value === "recent") {
-            arr.sort((a,b)=>{
-                if (a.id < b.id) return 1
-                if (a.id > b.id) return -1
-                return 0
-            });
-        } else if (e.target.value === "modified") {
-            arr.sort((a,b)=>{
-                const dateA = new Date(a.updatedAt);
-                const dateB = new Date(b.updatedAt);
-                if (dateA < dateB) return 1
-                if (dateA > dateB) return -1
-                return 0
-            });
-        }
-        setOrderedQuestions(arr);
-    }
-
-    let qs = <></>
-    if (orderedQuestions.length === 0) {
-        qs = <ul>{questions?.map((question, i) => <QuestionIndexItem question={question} key={i}/>)}</ul>
-    } else {
-        qs = <ul>{orderedQuestions?.map((question, i) => <QuestionIndexItem question={question} key={i}/>)}</ul>
+        setQOrder(e.target.value);
     }
 
     return (
@@ -77,7 +64,7 @@ const QuestionIndex = props => {
                 </select>
                 <NavLink to={"/questions/new"}><button>New Question</button></NavLink>
             </div>
-            {qs}
+            {arr?.map((question, i) => <QuestionIndexItem question={question} key={i}/>)}
         </div>
     )
 }

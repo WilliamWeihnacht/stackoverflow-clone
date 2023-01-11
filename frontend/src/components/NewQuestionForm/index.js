@@ -10,15 +10,28 @@ const NewQuestionForm = () => {
     const [body, setBody] = useState("");
     const [submitted, setSubmitted] = useState(false);
     const sessionUser = useSelector(state => state.session.user);
+    const [errors, setErrors] = useState([]);
 
     const handleSubmit = async e => {
         e.preventDefault()
+        setErrors([]);
         const data = {
             title,
             body,
         }
-        dispatch(createQuestion(data));
-        setSubmitted(true);
+        dispatch(createQuestion(data))
+        .catch(async(res) => {
+            let d;
+            try {
+                d = await res.clone().json();
+            } catch {
+                d = await res.text();
+            }
+            if (d?.errors) setErrors(d.errors);
+            else if (d) setErrors([d]);
+            else setErrors([res.statusText]);
+        })
+        if (errors[0]?.length === 0) setSubmitted(true);
     }
 
     if (!sessionUser || submitted) return <Redirect to={`/`}/>
@@ -26,6 +39,9 @@ const NewQuestionForm = () => {
     return (
         <div className='new-question-form-container'>
             <form onSubmit={handleSubmit} className='new-question-form'>
+                <ul>
+                    {errors[0]?.map(error => <li key={error}>{error}</li>)}
+                </ul>
                 <label>Title<br></br>
                     <input type="text" value={title} onChange={e => setTitle(e.target.value)} />
                 </label>

@@ -27,7 +27,8 @@ class Api::QuestionsController < ApplicationController
 
     def update
         @question = Question.find(params[:id])
-        if @question.update(question_params)
+        debugger
+        if @question.update!(question_params)
             render json: @question
         else
             render json: @question.errors.full_messages

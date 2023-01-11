@@ -19,6 +19,7 @@ const QuestionShow = () => {
     const answers = useSelector(state => Object.values(state.answers));
     const sessionUser = useSelector(state => state.session.user);
     const userId = useSelector(state => state.session?.user?.id);
+    const [errors, setErrors] = useState([]);
 
     useEffect(() => {
         dispatch(fetchQuestion(questionId));
@@ -46,23 +47,35 @@ const QuestionShow = () => {
         const month = date.slice(5,7);
         const day = date.slice(8,10);
         return month + "-" + day + "-" + year;
-        let x = new Date(date);
-        console.log(x)
+        // let x = new Date(date);
     }
 
     const handleSubmitAnswer = async (e) => {
         e.preventDefault();
-
+        setErrors([])
         const data = {
             question_id: question.id,
             body: answerBody
         }
-        dispatch(createAnswer(data));
-        setAnswerBody("");
-        dispatch(fetchQuestion(questionId));
+        dispatch(createAnswer(data))
+        .catch(async (res) => {
+            let d;
+            try {
+                d = await res.clone().json();
+            } catch {
+                d = await res.text();
+            }
+            if (d?.errors) setErrors(d.errors);
+            else if (d) setErrors([d]);
+            else setErrors([res.statusText]);
+        })
+        .then(setAnswerBody(""))
+        console.log(errors)
+        // dispatch(fetchQuestion(questionId));
     }
 
     const handleSubmitEdit = (e) => {
+        //if title is blank pass in original title
         e.preventDefault();
         const data = {
             question_id: question.id,
