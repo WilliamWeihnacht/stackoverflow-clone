@@ -31,8 +31,6 @@ const NewQuestionForm = () => {
             else if (d) setErrors([d]);
             else setErrors([res.statusText]);
         })
-        // .then(setSubmitted(true))
-        // if (errors[0]?.length === 0) setSubmitted(true);
     }
 
     if (!sessionUser || submitted) return <Redirect to={`/`}/>

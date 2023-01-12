@@ -29,7 +29,7 @@ const QuestionShow = () => {
 
     useEffect(() => {
         dispatch(fetchQuestion(questionId));
-    }, [dispatch, questionId, editing]);
+    }, [editing]);
 
     if (deleted) return <Redirect to="/questions"/>;
     if (!question) {
@@ -75,23 +75,19 @@ const QuestionShow = () => {
 
         let data;
         if (title === "" && questionBody === "") {
-            console.log(1)
             setEditing(false);
             return;
         } else if (title === "") {
-            console.log(2)
             data = {
                 question_id: questionId,
                 body: questionBody
             }
         } else if (questionBody === "") {
-            console.log(3)
             data = {
                 question_id: questionId,
                 title
             }
         } else {
-            console.log(4)
             data = {
                 question_id: questionId,
                 title,
@@ -140,9 +136,6 @@ const QuestionShow = () => {
                     </label>
                 </div>
                 <div className='question-body'>
-                    {/* <div className='question-voting-container'>
-                        <VoteButtons post={question}/>
-                    </div> */}
                     <label>Body
                         <textarea defaultValue={question.body} onChange={e => setQuestionBody(e.target.value)}></textarea>
                     </label>

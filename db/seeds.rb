@@ -117,11 +117,14 @@ ApplicationRecord.transaction do
       body: "I noticed that TOSS in Nebula Graph is an experimental function, how can I use it?"
     )
 
-    # Question.create!(
-    #   user_id: ,
-    #   title: "",
-    #   body: ""
-    # )
+    # More questions
+    100.times do 
+      Question.create!({
+        user_id: rand(1..10),
+        title: Faker::Lorem.question(word_count: 4),
+        body: Faker::Lorem.paragraph(sentence_count: 2, supplemental: true, random_sentences_to_add: 10)
+      }) 
+    end
 
     puts "Creating answers..."
     Answer.create!(
@@ -130,64 +133,40 @@ ApplicationRecord.transaction do
       body: "Try Margin: Auto, width: 70%"
     )
 
-    Answer.create!(
-      user_id: 1,
-      question_id: 1,
-      body: "Answer #2"
-    )
-
-    Answer.create!(
-      user_id: 5,
-      question_id: 2,
-      body: "insert helpful answer"
-    )
-
-    # Answer.create!(
-    #   user_id: ,
-    #   question_id: ,
-    #   body: 
-    # )
-
+    # More answers
+    100.times do 
+      Answer.create({
+        user_id: rand(1..10),
+        question_id: rand(1..Question.count),
+        body: Faker::Hacker.say_something_smart
+      }) 
+    end
 
     puts "Creating question votes..."
 
-    i = 1
-    while i <= 10
-      QuestionVote.create!(
-        user_id: i,
-        question_id: 1,
-        upvote: true
+    1000.times do
+      QuestionVote.create(
+        user_id: rand(1..10),
+        question_id: rand(1..Question.count),
+        upvote: rand(0..1) == 1 ? true : false
       )
-      i += 1
-    end
-
-    i = 1
-    while i <= 10
-      QuestionVote.create!(
-        user_id: i,
-        question_id: 2,
-        upvote: i%2 == 0
-      )
-      i += 1
-    end
-
-    i = 1
-    while i <= 10
-      QuestionVote.create!(
-        user_id: i,
-        question_id: 3,
-        upvote: false
-      )
-      i += 1
     end
 
     puts "Creating answer votes..."
 
-    AnswerVote.create!(
+    AnswerVote.create(
       user_id: 1,
       answer_id: 1,
       upvote: true
     )
-  
+
+    1000.times do
+      AnswerVote.create(
+        user_id: rand(1..10),
+        answer_id: rand(1..Answer.count),
+        upvote: rand(0..1) == 1 ? true : false
+      )
+    end
+
     puts "Done!"
 end

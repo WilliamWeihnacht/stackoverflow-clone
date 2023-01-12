@@ -1,5 +1,6 @@
 .question-feed {
     margin-top: 50px;
+    min-width: fit-content;
 }
 
 .question-feed ul {

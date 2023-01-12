@@ -68,7 +68,8 @@
 }
 
 .question-body p {
-    
+    height: 100%;
+    margin: 0;
 }
 
 .question-body label {

@@ -77,9 +77,11 @@ const answerReducer = (state = {}, action) => {
 			delete nextState[action.answerId];
 			return nextState;
 		case RECEIVE_QUESTIONS:
-			return {};
+			// return {};
+			return nextState;
 		case RECEIVE_QUESTION:
-			return {...nextState, ...action.payload.answers};
+			// return {...nextState, ...action.payload.answers};
+			return {...action.payload.answers};
 		case REMOVE_QUESTION:
 			Object.entries(nextState).forEach(element => {
 				if (element.questionId === action.questionId) delete nextState[element.id]
