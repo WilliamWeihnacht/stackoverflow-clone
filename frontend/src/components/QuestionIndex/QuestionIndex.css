@@ -8,6 +8,7 @@
 }
 
 #header-box {
+    min-width: 400px;
     width: 80%;
     margin: auto;
     display: flex;
@@ -30,9 +31,22 @@
     color: white;
 }
 
+#header-box select {
+    padding-top: 9px;
+    padding-bottom: 9px;
+}
+
 #header-box a {
     color: white;
     text-decoration: none;
+}
+
+#header-box-controls {
+    float: right;
+}
+
+#header-box-controls select {
+    margin-right: 20px;
 }
 
 #no-results-h1 {
@@ -44,3 +58,4 @@
     font-size: medium;
     border-top: 1px solid gray;
 }
+

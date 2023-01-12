@@ -49,6 +49,7 @@ export const createQuestion = (question) => async (dispatch) => {
 }
 
 export const editQuestion = (question) => async (dispatch) => {
+  question = {question}
   const res = await csrfFetch(`/api/questions/${question.question_id}`, {
     method: "PATCH",
     body: JSON.stringify(question)
@@ -99,10 +100,6 @@ export const removeQuestion = questionId => ({
     questionId
 });
 
-// export const receiveQuestionSearch = questions => ({
-//   type: 
-// })
-
 //reducer
 const questionReducer = (state = {}, action) => {
     Object.freeze(state);
@@ -110,7 +107,8 @@ const questionReducer = (state = {}, action) => {
   
     switch (action.type) {
       case RECEIVE_QUESTION:
-        nextState[action.payload.id] = action.payload;
+        // nextState[action.payload.id] = action.payload;
+        nextState[action.payload.question.id] = action.payload.question;
         return nextState
       case RECEIVE_QUESTIONS:
         // return {...nextState, ...action.questions}

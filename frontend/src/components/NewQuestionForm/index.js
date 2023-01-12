@@ -31,7 +31,8 @@ const NewQuestionForm = () => {
             else if (d) setErrors([d]);
             else setErrors([res.statusText]);
         })
-        if (errors[0]?.length === 0) setSubmitted(true);
+        // .then(setSubmitted(true))
+        // if (errors[0]?.length === 0) setSubmitted(true);
     }
 
     if (!sessionUser || submitted) return <Redirect to={`/`}/>
@@ -39,7 +40,7 @@ const NewQuestionForm = () => {
     return (
         <div className='new-question-form-container'>
             <form onSubmit={handleSubmit} className='new-question-form'>
-                <ul>
+                <ul className='error-list'>
                     {errors[0]?.map(error => <li key={error}>{error}</li>)}
                 </ul>
                 <label>Title<br></br>

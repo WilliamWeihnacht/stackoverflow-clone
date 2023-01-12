@@ -57,12 +57,14 @@ const QuestionIndex = props => {
         <div className='question-feed'>
             <div id='header-box'>
                 <h1>Top Questions</h1>
+                <div id='header-box-controls'>
                 <select onChange={handleOptionsChange}>
                     <option value="score">Highest Score</option>
                     <option value="recent">Newest</option>
                     <option value="modified">Last Modified</option>
                 </select>
                 <NavLink to={"/questions/new"}><button>New Question</button></NavLink>
+                </div>
             </div>
             {arr?.map((question, i) => <QuestionIndexItem question={question} key={i}/>)}
         </div>

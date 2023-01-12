@@ -20,14 +20,15 @@ class Api::QuestionsController < ApplicationController
     end
 
     def show
+        # debugger
         @question = Question.find(params[:id])
         @user_id = current_user.id
         render :show
     end
 
     def update
-        @question = Question.find(params[:id])
-        debugger
+        # debugger
+        @question = Question.find(params[:question][:question_id])
         if @question.update!(question_params)
             render json: @question
         else
@@ -51,6 +52,7 @@ class Api::QuestionsController < ApplicationController
 
     private
     def question_params
-        params.require(:question).permit(:title, :body)
+        # params.require(:question).permit(:title, :body)
+        params.require(:question).permit(:title, :body, :question_id)
     end
 end

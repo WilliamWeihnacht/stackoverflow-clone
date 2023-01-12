@@ -1,33 +1,36 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams, Redirect } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchQuestion, getQuestion, deleteQuestion, editQuestion } from '../../store/questionsReducer';
-import { createAnswer, fetchAnswers } from '../../store/answersReducer';
+import { fetchQuestion, deleteQuestion, editQuestion } from '../../store/questionsReducer';
+import { createAnswer } from '../../store/answersReducer';
 import "./QuestionShow.css";
 import AnswerIndexItem from '../AnswerIndexItem';
 import VoteButtons from '../VoteButtons';
 
 const QuestionShow = () => {
     const dispatch = useDispatch();
-    const [title, setTitle] = useState("");
-    const [questionBody, setQuestionBody] = useState("");
+    const { questionId } = useParams();
+    const question = useSelector(state => state.questions[questionId]);
+    const [title, setTitle] = useState(question?.title || "");
+    const [questionBody, setQuestionBody] = useState(question?.body || "");
     const [answerBody, setAnswerBody] = useState("");
     const [editing, setEditing] = useState(false);
     const [deleted, setDeleted] = useState(false);
-    const { questionId } = useParams();
-    const question = useSelector(state => state.questions[questionId]);
-    const answers = useSelector(state => Object.values(state.answers));
-    const sessionUser = useSelector(state => state.session.user);
-    const userId = useSelector(state => state.session?.user?.id);
     const [errors, setErrors] = useState([]);
+    const answers = useSelector(state => Object.values(state.answers));
+    const userId = useSelector(state => state.session?.user?.id);
+    
+    answers.sort((a,b)=>{
+        if (a.score < b.score) return 1
+        if (a.score > b.score) return -1
+        return 0
+    });
 
     useEffect(() => {
         dispatch(fetchQuestion(questionId));
     }, [dispatch, questionId, editing]);
 
-    if (!sessionUser) return <Redirect to="/splash"/>
     if (deleted) return <Redirect to="/"/>;
-
     if (!question) {
         return (
             <div className='question-header'>
@@ -35,12 +38,6 @@ const QuestionShow = () => {
             </div>
         )
     }
-
-    answers.sort((a,b)=>{
-        if (a.score < b.score) return 1
-        if (a.score > b.score) return -1
-        return 0
-    });
 
     const convertDateTime = (date) => {
         const year = date.slice(0,4);
@@ -77,12 +74,45 @@ const QuestionShow = () => {
     const handleSubmitEdit = (e) => {
         //if title is blank pass in original title
         e.preventDefault();
-        const data = {
-            question_id: question.id,
-            title,
-            body: questionBody
+
+        let data;
+        if (title === "" && questionBody === "") {
+            console.log(1)
+            setEditing(false);
+            return;
+        } else if (title === "") {
+            console.log(2)
+            data = {
+                question_id: question.id,
+                body: questionBody
+            }
+        } else if (questionBody === "") {
+            console.log(3)
+            data = {
+                question_id: question.id,
+                title
+            }
+        } else {
+            console.log(4)
+            data = {
+                question_id: question.id,
+                title,
+                body: questionBody
+            }
         }
+
         dispatch(editQuestion(data))
+        .catch(async (res) => {
+            let d;
+            try {
+                d = await res.clone().json();
+            } catch {
+                d = await res.text();
+            }
+            if (d?.errors) setErrors(d.errors);
+            else if (d) setErrors([d]);
+            else setErrors([res.statusText]);
+        })
         setEditing(false);
         dispatch(fetchQuestion(questionId));
     } 
