@@ -16,7 +16,8 @@ const QuestionShow = () => {
     const [answerBody, setAnswerBody] = useState("");
     const [editing, setEditing] = useState(false);
     const [deleted, setDeleted] = useState(false);
-    const [errors, setErrors] = useState([]);
+    const [answerErrors, setAnswerErrors] = useState([]);
+    const [editErrors, setEditErrors] = useState([]);
     const answers = useSelector(state => Object.values(state.answers));
     const userId = useSelector(state => state.session?.user?.id);
     
@@ -49,7 +50,7 @@ const QuestionShow = () => {
 
     const handleSubmitAnswer = async (e) => {
         e.preventDefault();
-        setErrors([])
+        setAnswerErrors([])
         const data = {
             question_id: question.id,
             body: answerBody
@@ -62,17 +63,14 @@ const QuestionShow = () => {
             } catch {
                 d = await res.text();
             }
-            if (d?.errors) setErrors(d.errors);
-            else if (d) setErrors([d]);
-            else setErrors([res.statusText]);
+            if (d?.errors) setAnswerErrors(d.errors);
+            else if (d) setAnswerErrors([d]);
+            else setAnswerErrors([res.statusText]);
         })
         .then(setAnswerBody(""))
-        console.log(errors)
-        // dispatch(fetchQuestion(questionId));
     }
 
     const handleSubmitEdit = (e) => {
-        //if title is blank pass in original title
         e.preventDefault();
 
         let data;
@@ -109,9 +107,9 @@ const QuestionShow = () => {
             } catch {
                 d = await res.text();
             }
-            if (d?.errors) setErrors(d.errors);
-            else if (d) setErrors([d]);
-            else setErrors([res.statusText]);
+            if (d?.errors) setEditErrors(d.errors);
+            else if (d) setEditErrors([d]);
+            else setEditErrors([res.statusText]);
         })
         setEditing(false);
         dispatch(fetchQuestion(questionId));
@@ -131,40 +129,45 @@ const QuestionShow = () => {
 
     let questionContent;
     if (editing) {
-       questionContent = (
-            <>
+        questionContent = (
             <form onSubmit={handleSubmitEdit}>
+                <ul className='error-list'>
+                        {editErrors.map(error => <li key={error}>{error}</li>)}
+                </ul>
                 <div className='question-header'>
                     <label><h1>Title</h1>
                         <input type="text" defaultValue={question.title} onChange={e => setTitle(e.target.value)}/>
                     </label>
                 </div>
                 <div className='question-body'>
-                    <div className='question-voting-container'>
+                    {/* <div className='question-voting-container'>
                         <VoteButtons post={question}/>
-                    </div>
+                    </div> */}
                     <label>Body
                         <textarea defaultValue={question.body} onChange={e => setQuestionBody(e.target.value)}></textarea>
                     </label>
                 </div>
-                <button>Update</button>
-                <button onClick={() => setEditing(false)}>Cancel</button>
+                <button id='question-update-button'>Update</button>
+                <button id='question-cancel-button' onClick={() => setEditing(false)}>Cancel</button>
             </form>
-            </>
        )
     } else {
         questionContent = (
             <>
                 <div className='question-header'>
                     <h1>{question.title}</h1>
-                    <span><strong>Asked</strong> {convertDateTime(question.createdAt)}, <strong>Modified</strong> {convertDateTime(question.updatedAt)}</span>
+                    <span><em>Asked</em> {convertDateTime(question.createdAt)} <em>Modified</em> {convertDateTime(question.updatedAt)}</span>
                     {updateLinks}
                 </div>
+
                 <div className='question-body'>
                     <div className='question-voting-container'>
                         <VoteButtons post={question}/>
                     </div>
-                    <p>{question.body}</p>
+                    <div id='question-content-container'>
+                        <p>{question.body}</p>
+                        <span id='op-username'><em>Asked by </em>{question.user}</span>
+                    </div>
                 </div>
             </>
         )
@@ -186,9 +189,9 @@ const QuestionShow = () => {
             <div className='new-answer-form-container'>
                 <h1>Your Answer</h1>
                 <form onSubmit={handleSubmitAnswer}>
-                    {/* <ul className='error-list'>
-                        {errors.map(error => <li key={error}>{error}</li>)}
-                    </ul> */}
+                    <ul className='error-list'>
+                        {answerErrors.map(error => <li key={error}>{error}</li>)}
+                    </ul>
                     <textarea onChange={e => setAnswerBody(e.target.value)} />
                     <button>Submit</button>
                 </form>
