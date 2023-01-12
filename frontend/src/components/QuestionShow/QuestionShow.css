@@ -91,6 +91,7 @@
     height: 100px;
     min-height: fit-content;
     resize: none;
+    box-sizing: border-box;
 }
 
 .new-answer-form-container button {

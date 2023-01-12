@@ -27,9 +27,8 @@ class Api::QuestionsController < ApplicationController
     end
 
     def update
-        # debugger
-        @question = Question.find(params[:question][:question_id])
-        if @question.update!(question_params)
+        @question = Question.find(params[:id])
+        if @question.update!(question_params.except(:question_id))
             render json: @question
         else
             render json: @question.errors.full_messages
@@ -46,13 +45,11 @@ class Api::QuestionsController < ApplicationController
 
     def search
         @questions = Question.where("LOWER(title) LIKE ?", "%#{params[:query].downcase}%")#.limit(10)
-        # render json: @questions
         render :index
     end
 
     private
     def question_params
-        # params.require(:question).permit(:title, :body)
         params.require(:question).permit(:title, :body, :question_id)
     end
 end

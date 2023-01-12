@@ -83,19 +83,19 @@ const QuestionShow = () => {
         } else if (title === "") {
             console.log(2)
             data = {
-                question_id: question.id,
+                question_id: questionId,
                 body: questionBody
             }
         } else if (questionBody === "") {
             console.log(3)
             data = {
-                question_id: question.id,
+                question_id: questionId,
                 title
             }
         } else {
             console.log(4)
             data = {
-                question_id: question.id,
+                question_id: questionId,
                 title,
                 body: questionBody
             }
@@ -186,6 +186,9 @@ const QuestionShow = () => {
             <div className='new-answer-form-container'>
                 <h1>Your Answer</h1>
                 <form onSubmit={handleSubmitAnswer}>
+                    {/* <ul className='error-list'>
+                        {errors.map(error => <li key={error}>{error}</li>)}
+                    </ul> */}
                     <textarea onChange={e => setAnswerBody(e.target.value)} />
                     <button>Submit</button>
                 </form>

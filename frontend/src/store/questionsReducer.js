@@ -50,7 +50,8 @@ export const createQuestion = (question) => async (dispatch) => {
 
 export const editQuestion = (question) => async (dispatch) => {
   question = {question}
-  const res = await csrfFetch(`/api/questions/${question.question_id}`, {
+  console.log(question)
+  const res = await csrfFetch(`/api/questions/${question.question.question_id}`, {
     method: "PATCH",
     body: JSON.stringify(question)
   });
