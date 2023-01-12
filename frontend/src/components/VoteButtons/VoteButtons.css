@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     width: 50px;
+    padding-right: 15px;
 }
 
 .vote-buttons-container button {

@@ -9,7 +9,7 @@
 
 #header-box {
     min-width: 400px;
-    width: 80%;
+    width: 50%;
     margin: auto;
     display: flex;
     flex-direction: row;

@@ -1,0 +1,102 @@
+#splash-black-box {
+    position: absolute;
+    background-color: hsl(210,8%,25%);
+    height: 90%;
+    width: 90%;
+    margin: 60px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#splash-link-flexbox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.splash-link-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    height: 150px;
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+#right-splash-link-container {
+    background-color: hsl(206,90%,69.5%);
+    margin-left: 10px;
+}
+
+#left-splash-link-container {
+    background-color: hsl(27,90%,83%);
+    margin-right: 10px;
+}
+
+#mag-glass-div {
+    width: 50px;
+    height: 60px;
+    background-image: url(../../img/magnifying-glass.png);
+    background-size: cover;
+}
+
+#computer-icon-div {
+    width: 50px;
+    height: 60px;
+    background-image: url(../../img/computer.png);
+    background-size: cover;
+}
+
+#splash-sign-up-button {
+    background-color: orange;
+}
+
+#splash-sign-up-button:hover { 
+    background-color: darkorange;
+}
+
+#splash-login-button {
+}
+
+#title-container {
+    text-align: center;
+}
+
+#splash-title {
+    color: white;
+    font-size: 50px;
+    width: 50%;
+    margin: 20px auto;
+}
+
+#splash-title-em {
+    display: inline;
+    color: hsl(27,90%,55%);
+    font-size: 70px;
+}
+
+#splash-stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#splash-stats div {
+    width: 150px;
+    height: 100px;
+}
+
+#splash-stats h5 {
+    color: white;
+    width: 150px;
+    margin: 2px 0;
+    font-size: 18px;
+}
+
+#splash-stats p {
+    color: gray;
+    margin: 0;
+    font-size: 12px;
+}
