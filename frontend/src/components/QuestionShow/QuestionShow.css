@@ -32,7 +32,7 @@
 }
 
 .question-header h1 {
-    overflow: auto;
+    overflow: hidden;
     margin: 0;
     padding-top: 50px;
 }
