@@ -84,6 +84,10 @@
     color: white;
 }
 
+.navbar button:hover {
+    background-color: hsl(206,100%,40%);
+}
+
 .navbar a {
     color: white;
     text-decoration: none;

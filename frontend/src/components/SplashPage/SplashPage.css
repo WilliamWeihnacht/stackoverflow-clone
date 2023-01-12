@@ -1,9 +1,10 @@
 #splash-black-box {
-    position: absolute;
     background-color: hsl(210,8%,25%);
     height: 90%;
-    width: 90%;
-    margin: 60px;
+    width: 80%;
+    min-width: fit-content;
+    margin: auto;
+    margin-top: 60px;
     border-radius: 10px;
     text-align: center;
 }
@@ -25,6 +26,10 @@
     border-radius: 10px;
 }
 
+.splash-link-container p {
+    margin-top: 0;
+}
+
 #right-splash-link-container {
     background-color: hsl(206,90%,69.5%);
     margin-left: 10px;
@@ -35,18 +40,18 @@
     margin-right: 10px;
 }
 
-#mag-glass-div {
+.icon-div {
     width: 50px;
-    height: 60px;
-    background-image: url(../../img/magnifying-glass.png);
+    height: 50px;
     background-size: cover;
 }
 
+#mag-glass-div {
+    background-image: url(../../img/magnifying-glass.png);
+}
+
 #computer-icon-div {
-    width: 50px;
-    height: 60px;
     background-image: url(../../img/computer.png);
-    background-size: cover;
 }
 
 #splash-sign-up-button {

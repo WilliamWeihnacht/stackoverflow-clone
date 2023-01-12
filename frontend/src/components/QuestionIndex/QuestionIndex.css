@@ -31,6 +31,10 @@
     color: white;
 }
 
+#header-box button:hover {
+    background-color: hsl(206,100%,40%);
+}
+
 #header-box select {
     padding-top: 9px;
     padding-bottom: 9px;

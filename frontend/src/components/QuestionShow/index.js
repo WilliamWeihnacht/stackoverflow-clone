@@ -31,7 +31,7 @@ const QuestionShow = () => {
         dispatch(fetchQuestion(questionId));
     }, [dispatch, questionId, editing]);
 
-    if (deleted) return <Redirect to="/"/>;
+    if (deleted) return <Redirect to="/questions"/>;
     if (!question) {
         return (
             <div className='question-header'>

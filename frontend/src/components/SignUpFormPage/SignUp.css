@@ -38,3 +38,19 @@
     background-color: hsl(206,100%,52%);
     color: white;
 }
+
+.sign-up-form button:hover {
+    background-color: hsl(206,100%,40%);
+}
+
+#blue-accent-div-1 {
+    position: absolute;
+    top: 200px;
+    left: 5%;
+    z-index: 1;
+    background-color: skyblue;
+    border-radius: 10px;
+    height: 50px;
+    width: 50px;
+    box-shadow: -30px 30px 0px 0px teal;
+}

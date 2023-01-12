@@ -40,6 +40,15 @@ const NewQuestionForm = () => {
     return (
         <div className='new-question-form-container'>
             <form onSubmit={handleSubmit} className='new-question-form'>
+                <div id='new-question-form-instructions'>
+                    <h4>Writing a good question</h4>
+                    <ul>
+                        <li>Summarize your problem in a one-line title.</li>
+                        <li>Describe your problem in more detail.</li>
+                        <li>Describe what you tried and what you expected to happen.</li>
+                        <li>Review your question and post it to the site.</li>
+                    </ul>
+                </div>
                 <ul className='error-list'>
                     {errors[0]?.map(error => <li key={error}>{error}</li>)}
                 </ul>

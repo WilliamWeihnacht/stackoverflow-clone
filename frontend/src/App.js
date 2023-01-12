@@ -13,7 +13,7 @@ function App() {
     <>
       <Navigation/>
       <Switch>
-        <Route exact path="/">
+        <Route exact path="/questions">
           <QuestionIndex/>
         </Route>
         <Route path="/login">
