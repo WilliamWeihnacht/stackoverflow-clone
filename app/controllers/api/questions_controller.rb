@@ -4,29 +4,41 @@ class Api::QuestionsController < ApplicationController
     def index
         num_results = 10
         page = params[:page].to_i
+        query_arr = params[:query].downcase.split(" ") if params[:query]
+        
+        #@questions = Question.all.limit(num_results).offset(num_results * (page - 1))#.where("LOWER(title) LIKE ?", "%#{query}%"))
 
+        
         if params[:query]
-            @questions = Question.all.limit(num_results).offset(num_results * (page - 1)).where("LOWER(title) LIKE ?", "%#{params[:query].downcase}%")
+            @filtered_questions = []
+            query_arr.each do |query|
+                @filtered_questions << Question.where("LOWER(title) LIKE ?", "%#{query}%").or(Question.where("LOWER(body) LIKE ?", "%#{query}%"))
+            end
+            @filtered_questions = @filtered_questions.reduce(:and)
         else
-            @questions = Question.all.limit(num_results).offset(num_results * (page - 1))
+            @filtered_questions = Question.all
         end
-
-        # debugger
 
         order = params[:order]
         case order
         when "new"
-            @questions = @questions.order(created_at: :desc)
+            @questions = @filtered_questions.order(created_at: :desc)
         when "modified"
-            @questions = @questions.order(updated_at: :desc)
+            @questions = @filtered_questions.order(updated_at: :desc)
         when "score"
             #@join_table = Question.left_outer_joins(:votes).select('question_votes.*')
             #@questions = @questions.order()
         else
-            @questions = @questions.order(created_at: :desc)
+            @questions = @filtered_questions.order(created_at: :desc)
         end
 
-        render :index
+        @questions = @questions.limit(num_results).offset(num_results * (page - 1))
+
+        if @questions
+            render :index
+        else
+            render json: @questions.errors.full_messages
+        end
     end
     
     def create

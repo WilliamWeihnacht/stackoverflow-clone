@@ -34,7 +34,7 @@ const SplashPage = () => {
                     </div>
                     <div>
                         <h5>0% ROI</h5>
-                        <p>from A/A students using Hack Overload for teams</p>
+                        <p>from A/A students using Hack Overload Pro</p>
                     </div>
                     <div>
                         <h5>100+</h5>

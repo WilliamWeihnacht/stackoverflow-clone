@@ -69,7 +69,26 @@
     /* border: 1px solid red; */
     margin: 10px;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+}
+
+#prev-page {
+    margin-right: 5px;
+}
+
+#next-page {
+    margin-left: 5px;
+}
+
+#page-number-div {
+    color: hsl(206,100%,52%);
+    height: 20px;
+    width: 20px;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 100px;
+    text-align: center;
+    padding: 5px;
 }
 
 #back-button-div {
@@ -81,5 +100,5 @@
 
 #back-button {
     text-decoration: underline;
-    color: hsl(206,100%,52%);;
+    color: hsl(206,100%,52%);
 }

@@ -12,6 +12,7 @@ button {
     padding-bottom: 10px;
     border-radius: 3px;
     border: 0;
+    /* border: 1px outset gray; */
     background-color: hsl(206,100%,52%);
     color: white;
 }

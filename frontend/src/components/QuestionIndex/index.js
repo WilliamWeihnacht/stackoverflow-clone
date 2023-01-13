@@ -15,24 +15,6 @@ const QuestionIndex = props => {
     const [query,setQuery] = useQueryParam('query', StringParam);
     const questions = useSelector(state => Object.values(state.questions));
 
-    if (order === "new") {
-        questions.sort((a,b)=>{
-            const dateA = new Date(a.createdAt);
-            const dateB = new Date(b.createdAt);
-            if (dateA < dateB) return 1
-            if (dateA > dateB) return -1
-            return 0
-        });
-    } else if (order === "modified") {
-        questions.sort((a,b)=>{
-            const dateA = new Date(a.updatedAt);
-            const dateB = new Date(b.updatedAt);
-            if (dateA < dateB) return 1
-            if (dateA > dateB) return -1
-            return 0
-        });
-    }
-
     useEffect(()=>{
         dispatch(fetchAllQuestions({page,query,order}));
         if (query && query !== "") {
@@ -41,6 +23,35 @@ const QuestionIndex = props => {
             setHeaderTitle("Top Questions");
         }
     },[page,query,order]);
+
+    switch(order) {
+        case "new":
+            questions.sort((a,b)=>{
+                const dateA = new Date(a.createdAt);
+                const dateB = new Date(b.createdAt);
+                if (dateA < dateB) return 1
+                if (dateA > dateB) return -1
+                return 0
+            });
+            break;
+        case "modified":
+            questions.sort((a,b)=>{
+                const dateA = new Date(a.updatedAt);
+                const dateB = new Date(b.updatedAt);
+                if (dateA < dateB) return 1
+                if (dateA > dateB) return -1
+                return 0
+            });
+            break
+        default:
+            questions.sort((a,b)=>{
+                const dateA = new Date(a.createdAt);
+                const dateB = new Date(b.createdAt);
+                if (dateA < dateB) return 1
+                if (dateA > dateB) return -1
+                return 0
+            });
+    }
 
     if (questions.length === 0) {
         return (
@@ -77,14 +88,15 @@ const QuestionIndex = props => {
     if (page <= 1 && questions.length < 10) {
         pageButtons = <></>
     } else if (page <= 1) {
-        pageButtons = <button onClick={nextPage}>Next Page</button>
+        pageButtons = <button onClick={nextPage} id='next-page-single'>Next Page</button>
     } else if (questions.length < 10) {
-        pageButtons = <button onClick={prevPage}>Last Page</button>
+        pageButtons = <button onClick={prevPage} id='prev-page-single'>Previous Page</button>
     } else {
         pageButtons =(
             <>
-                <button onClick={prevPage}>Last Page</button>
-                <button onClick={nextPage}>Next Page</button>
+                <button onClick={prevPage} id='prev-page'>Previous Page</button>
+                <div id='page-number-div'>{page}</div>
+                <button onClick={nextPage} id='next-page'>Next Page</button>
             </>
         )
     }
