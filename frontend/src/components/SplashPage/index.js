@@ -25,20 +25,20 @@ const SplashPage = () => {
                 </div>
                 <span id='splash-stats'>
                     <div>
-                        <h5>100+ million</h5>
-                        <p>monthly visitors</p>
+                        <h5>2 weeks</h5>
+                        <p>of development time accumulated</p>
                     </div>
                     <div>
-                        <h5>45.1+ billion</h5>
-                        <p>times a hacker got help</p>
+                        <h5>at least 1</h5>
+                        <p># hackers who have been helped</p>
                     </div>
                     <div>
-                        <h5>191% ROI</h5>
-                        <p>from companies using Hack Overload for teams</p>
+                        <h5>0% ROI</h5>
+                        <p>from A/A students using Hack Overload for teams</p>
                     </div>
                     <div>
-                        <h5>5,000+</h5>
-                        <p>Hack Overload for Teams instances active every day</p>
+                        <h5>100+</h5>
+                        <p>Questions seeded every day</p>
                     </div>
                 </span>
             </div>
