@@ -7,7 +7,7 @@ const SearchBar = () => {
 
     const handleSearch = async (e) => {
         if (e.key === 'Enter') {
-            history.push(`/questions?query=${e.target.value}`);
+            history.push(`/questions?page=1&query=${e.target.value}`);
         }
     }
 

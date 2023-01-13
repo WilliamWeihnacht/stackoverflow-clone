@@ -1,16 +1,17 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { createQuestion } from '../../store/questionsReducer';
 import "./NewQuestionForm.css";
 
 const NewQuestionForm = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
-    const [submitted, setSubmitted] = useState(false);
     const sessionUser = useSelector(state => state.session.user);
     const [errors, setErrors] = useState([]);
+    const [submitted,setSubmitted] = useState(false);
 
     const handleSubmit = async e => {
         e.preventDefault()
@@ -20,12 +21,17 @@ const NewQuestionForm = () => {
             body,
         }
         dispatch(createQuestion(data))
+        // .then(()=>{
+        //     Promise.resolve(history.push(`/questions?page=1`));
+        //     // setSubmitted(true);
+        // })
         .catch(async(res) => {
             let d;
             try {
                 d = await res.clone().json();
             } catch {
-                d = await res.text();
+                // d = await res.text();
+                console.log(d);
             }
             if (d?.errors) setErrors(d.errors);
             else if (d) setErrors([d]);
@@ -33,7 +39,7 @@ const NewQuestionForm = () => {
         })
     }
 
-    if (!sessionUser || submitted) return <Redirect to={`/`}/>
+    if (!sessionUser) return <Redirect to={`/splash`}/>
 
     return (
         <div className='new-question-form-container'>

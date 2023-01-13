@@ -11,6 +11,8 @@ class Api::QuestionsController < ApplicationController
             @questions = Question.all.limit(num_results).offset(num_results * (page - 1))
         end
 
+        # debugger
+
         order = params[:order]
         case order
         when "new"
@@ -20,9 +22,9 @@ class Api::QuestionsController < ApplicationController
         when "score"
             #@join_table = Question.left_outer_joins(:votes).select('question_votes.*')
             #@questions = @questions.order()
+        else
+            @questions = @questions.order(created_at: :desc)
         end
-
-        # debugger
 
         render :index
     end

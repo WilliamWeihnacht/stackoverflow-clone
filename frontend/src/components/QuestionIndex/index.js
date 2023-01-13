@@ -9,14 +9,38 @@ import "./QuestionIndex.css";
 const QuestionIndex = props => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const [order, setOrder] = useQueryParam('query', StringParam);
+    const [headerTitle,setHeaderTitle] = useState("Top Questions");
+    const [order, setOrder] = useQueryParam('order', StringParam);
     const [page,setPage] = useQueryParam('page', NumberParam);
     const [query,setQuery] = useQueryParam('query', StringParam);
     const questions = useSelector(state => Object.values(state.questions));
 
+    if (order === "new") {
+        questions.sort((a,b)=>{
+            const dateA = new Date(a.createdAt);
+            const dateB = new Date(b.createdAt);
+            if (dateA < dateB) return 1
+            if (dateA > dateB) return -1
+            return 0
+        });
+    } else if (order === "modified") {
+        questions.sort((a,b)=>{
+            const dateA = new Date(a.updatedAt);
+            const dateB = new Date(b.updatedAt);
+            if (dateA < dateB) return 1
+            if (dateA > dateB) return -1
+            return 0
+        });
+    }
+
     useEffect(()=>{
         dispatch(fetchAllQuestions({page,query,order}));
-    },[page,query]);
+        if (query && query !== "") {
+            setHeaderTitle(`Results for \"${query}\"`);
+        } else {
+            setHeaderTitle("Top Questions");
+        }
+    },[page,query,order]);
 
     if (questions.length === 0) {
         return (
@@ -35,7 +59,7 @@ const QuestionIndex = props => {
 
     const handleOptionsChange = (e) => {
         const newOrder = e.target.value || "new";
-        setOrder(e.target.value);
+        setOrder(newOrder);
     }
 
     const nextPage = (e) => {
@@ -50,7 +74,9 @@ const QuestionIndex = props => {
     }
 
     let pageButtons;
-    if (page <= 1) {
+    if (page <= 1 && questions.length < 10) {
+        pageButtons = <></>
+    } else if (page <= 1) {
         pageButtons = <button onClick={nextPage}>Next Page</button>
     } else if (questions.length < 10) {
         pageButtons = <button onClick={prevPage}>Last Page</button>
@@ -67,17 +93,17 @@ const QuestionIndex = props => {
         <>
         <div className='question-feed'>
             <div id='header-box'>
-                <h1>Top Questions</h1>
+                <h1>{headerTitle}</h1>
                 <div id='header-box-controls'>
                 <select onChange={handleOptionsChange}>
                     <option value="new">Newest</option>
-                    <option value="score">Highest Score</option>
                     <option value="modified">Last Modified</option>
+                    {/* <option value="score">Highest Score</option> */}
                 </select>
                 <NavLink to={"/questions/new"}><button>New Question</button></NavLink>
                 </div>
             </div>
-            {questions?.reverse().map((question, i) => <QuestionIndexItem question={question} key={i}/>)}
+            {questions?.map((question, i) => <QuestionIndexItem question={question} key={i}/>)}
         </div>
         <div id='page-buttons-div'>
             {pageButtons}
