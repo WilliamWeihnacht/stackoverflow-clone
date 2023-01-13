@@ -1,16 +1,13 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Redirect } from "react-router-dom";
-import { fetchSearchQuestions } from "../../store/questionsReducer";
+import { useHistory } from "react-router-dom";
 import './SearchBar.css';
 
 
 const SearchBar = () => {
-    const dispatch = useDispatch();
+    const history = useHistory();
 
     const handleSearch = async (e) => {
         if (e.key === 'Enter') {
-            dispatch(fetchSearchQuestions(e.target.value));
+            history.push(`/questions?query=${e.target.value}`);
         }
     }
 

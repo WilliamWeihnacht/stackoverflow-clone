@@ -7,6 +7,7 @@ import QuestionIndex from "./components/QuestionIndex";
 import NewQuestionForm from "./components/NewQuestionForm";
 import QuestionShow from "./components/QuestionShow";
 import SplashPage from "./components/SplashPage";
+import NotFound from "./components/NotFound";
 
 function App() {
   return (
@@ -30,6 +31,9 @@ function App() {
         </Route>
         <Route path="/splash">
           <SplashPage/>
+        </Route>
+        <Route path="*">
+          <NotFound/>
         </Route>
       </Switch>
     </>

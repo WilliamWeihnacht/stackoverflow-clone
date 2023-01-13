@@ -6,13 +6,13 @@ export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 export const REMOVE_QUESTION = 'REMOVE_QUESTION';
 
 //fetch util methods
-export const requestQuestions = () => {
-    return fetch('/api/questions');
-}
+// export const requestQuestions = () => {
+//     return fetch('/api/questions');
+// }
   
-export const requestQuestionDetail = id => {
-    return fetch(`/api/questions/${id}`)
-}
+// export const requestQuestionDetail = id => {
+//     return fetch(`/api/questions/${id}`)
+// }
 
 export const getQuestion = (questionId) => (store) => {
   if (store?.questions[questionId]) return store.questions[questionId];
@@ -20,9 +20,17 @@ export const getQuestion = (questionId) => (store) => {
 };
 
 //thunk action creators
-export const fetchAllQuestions = () => async (dispatch) => {
-    const res = await requestQuestions();
+export const fetchAllQuestions = ({ page, query, order }) => async (dispatch) => {
+    page ||= 1;
+    order ||="new";
+    let res;
+    if (query) {
+      res = await fetch(`/api/questions?page=${page}&order=${order}&query=${query}`)
+    } else {
+      res = await fetch(`/api/questions?page=${page}&order=${order}`);
+    }
     const questions = await res.json();
+    console.log(questions)
     dispatch(receiveQuestions(questions));
 }
 
@@ -112,8 +120,8 @@ const questionReducer = (state = {}, action) => {
         nextState[action.payload.question.id] = action.payload.question;
         return nextState
       case RECEIVE_QUESTIONS:
-        return {...nextState, ...action.questions}
-        // return {...action.questions}
+        // return {...nextState, ...action.questions}
+        return {...action.questions}
       case REMOVE_QUESTION:
         delete nextState[action.questionId];
         return nextState;

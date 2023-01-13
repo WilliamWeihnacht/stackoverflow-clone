@@ -1,0 +1,13 @@
+#not-found-page {
+    margin: 200px auto;
+    width: 50%;
+    text-align: center;
+    border: 1px solid darkred;
+    color: darkred;
+    background-color: lightcoral;
+    padding: 20px;
+}
+
+#not-found-button {
+    text-decoration: underline;
+}

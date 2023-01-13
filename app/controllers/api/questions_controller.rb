@@ -1,11 +1,29 @@
 class Api::QuestionsController < ApplicationController
+    before_action :require_logged_in, only: [:create, :update, :destroy]
 
     def index
-        # Question.joins(:votes)
-        # QuestionVote.joins(:question)
-        # QuestionVote.left_outer_joins(:question)
-        # Question.connection.select_all('SELECT * FROM questions WHERE ')
-        @questions = Question.all#.order() order by score
+        num_results = 10
+        page = params[:page].to_i
+
+        if params[:query]
+            @questions = Question.all.limit(num_results).offset(num_results * (page - 1)).where("LOWER(title) LIKE ?", "%#{params[:query].downcase}%")
+        else
+            @questions = Question.all.limit(num_results).offset(num_results * (page - 1))
+        end
+
+        order = params[:order]
+        case order
+        when "new"
+            @questions = @questions.order(created_at: :desc)
+        when "modified"
+            @questions = @questions.order(updated_at: :desc)
+        when "score"
+            #@join_table = Question.left_outer_joins(:votes).select('question_votes.*')
+            #@questions = @questions.order()
+        end
+
+        # debugger
+
         render :index
     end
     
@@ -20,7 +38,6 @@ class Api::QuestionsController < ApplicationController
     end
 
     def show
-        # debugger
         @question = Question.find(params[:id])
         @user_id = current_user.id
         render :show
@@ -41,11 +58,6 @@ class Api::QuestionsController < ApplicationController
             @question.answers.destroy_all
             @question.delete
         end
-    end
-
-    def search
-        @questions = Question.where("LOWER(title) LIKE ?", "%#{params[:query].downcase}%")#.limit(10)
-        render :index
     end
 
     private
