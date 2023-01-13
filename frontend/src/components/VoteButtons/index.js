@@ -52,8 +52,7 @@ const VoteButtons = ({ post }) => {
             } else {
                 const data = {
                     answer_id: post.id,
-                    upvote: true,
-                    test: "poopy"
+                    upvote: true
                 }
                 dispatch(createAnswerVote(data));
             }

@@ -1,8 +1,11 @@
-import { useHistory } from "react-router-dom";
+import { Redirect, useHistory, useLocation } from "react-router-dom";
 import './NotFound.css';
 
 const NotFound = () => {
     const history = useHistory();
+    const location = useLocation();
+
+    if (location.pathname === "/") return <Redirect to="/splash"/>;
 
     return (
         <div id="not-found-page">

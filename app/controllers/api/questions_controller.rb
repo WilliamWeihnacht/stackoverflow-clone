@@ -5,12 +5,9 @@ class Api::QuestionsController < ApplicationController
         num_results = 10
         page = params[:page].to_i
         query_arr = params[:query].downcase.split(" ") if params[:query]
-        
-        #@questions = Question.all.limit(num_results).offset(num_results * (page - 1))#.where("LOWER(title) LIKE ?", "%#{query}%"))
-
-        
+       
+        @filtered_questions = []
         if params[:query]
-            @filtered_questions = []
             query_arr.each do |query|
                 @filtered_questions << Question.where("LOWER(title) LIKE ?", "%#{query}%").or(Question.where("LOWER(body) LIKE ?", "%#{query}%"))
             end
@@ -18,7 +15,7 @@ class Api::QuestionsController < ApplicationController
         else
             @filtered_questions = Question.all
         end
-
+        
         order = params[:order]
         case order
         when "new"
@@ -34,11 +31,7 @@ class Api::QuestionsController < ApplicationController
 
         @questions = @questions.limit(num_results).offset(num_results * (page - 1))
 
-        if @questions
-            render :index
-        else
-            render json: @questions.errors.full_messages
-        end
+        render :index
     end
     
     def create
