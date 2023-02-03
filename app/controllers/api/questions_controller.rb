@@ -15,7 +15,9 @@ class Api::QuestionsController < ApplicationController
         else
             @filtered_questions = Question.all
         end
+
         
+
         order = params[:order]
         case order
         when "new"
@@ -23,10 +25,11 @@ class Api::QuestionsController < ApplicationController
         when "modified"
             @questions = @filtered_questions.order(updated_at: :desc)
         when "score"
-            #@join_table = Question.left_outer_joins(:votes).select('question_votes.*')
-            #@questions = @questions.order()
+            #todo
+            # debugger
+            @questions = Question.joins(:votes).sum('questions.id')
         else
-            @questions = @filtered_questions.order(created_at: :desc)
+            @questions = @filtered_questions.joins(:votes).count('questions.id')
         end
 
         @questions = @questions.limit(num_results).offset(num_results * (page - 1))
@@ -46,7 +49,7 @@ class Api::QuestionsController < ApplicationController
 
     def show
         @question = Question.find(params[:id])
-        @user_id = current_user.id
+        # @user_id = current_user.id
         render :show
     end
 

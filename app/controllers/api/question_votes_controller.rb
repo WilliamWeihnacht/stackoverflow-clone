@@ -1,4 +1,5 @@
 class Api::QuestionVotesController < ApplicationController
+    before_action :require_logged_in
 
     def create
         @question_vote = QuestionVote.new(question_vote_params)

@@ -5,15 +5,6 @@ export const RECEIVE_QUESTION = 'RECEIVE_QUESTION';
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 export const REMOVE_QUESTION = 'REMOVE_QUESTION';
 
-//fetch util methods
-// export const requestQuestions = () => {
-//     return fetch('/api/questions');
-// }
-  
-// export const requestQuestionDetail = id => {
-//     return fetch(`/api/questions/${id}`)
-// }
-
 export const getQuestion = (questionId) => (store) => {
   if (store?.questions[questionId]) return store.questions[questionId];
   return null;
@@ -30,7 +21,6 @@ export const fetchAllQuestions = ({ page, query, order }) => async (dispatch) =>
       res = await fetch(`/api/questions?page=${page}&order=${order}`);
     }
     const questions = await res.json();
-    console.log(questions)
     dispatch(receiveQuestions(questions));
 }
 
@@ -58,7 +48,6 @@ export const createQuestion = (question) => async (dispatch) => {
 
 export const editQuestion = (question) => async (dispatch) => {
   question = {question}
-  console.log(question)
   const res = await csrfFetch(`/api/questions/${question.question.question_id}`, {
     method: "PATCH",
     body: JSON.stringify(question)

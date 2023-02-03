@@ -10,6 +10,7 @@ const VoteButtons = ({ post }) => {
     const dispatch = useDispatch();
     const { questionId } = useParams();
     // const userVote = useSelector(state => state.questions[questionId].userVote)
+    const sessionUser = useSelector(state => state.session.user);
     const userVote = post.userVote;
     const [upvote,setUpvote] = useState(userVote?.upvote === true ? "upvote-active" : "upvote");
     const [downvote,setDownvote] = useState(userVote?.upvote === false ? "downvote-active" : "downvote");
@@ -17,6 +18,7 @@ const VoteButtons = ({ post }) => {
 
 
     const handleUpvote = async (e) => {
+        if (!sessionUser) return;
         if (userVote && userVote.upvote === false) {
             if (post.title) {
                 const data = {
@@ -62,6 +64,7 @@ const VoteButtons = ({ post }) => {
     }
 
     const handleDownVote = async (e) => {
+        if (!sessionUser) return;
         if (userVote && userVote.upvote === true) {
             if (post.title) {
                 const data = {

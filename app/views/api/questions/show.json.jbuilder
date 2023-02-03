@@ -1,7 +1,7 @@
 json.question do
   json.extract! @question, :id, :user_id, :title, :body, :created_at, :updated_at
   json.score @question.votes.where(upvote: true).length - @question.votes.where(upvote: false).length
-  json.user_vote @question.votes.where(user_id: @user_id).first
+  json.user_vote @question.votes.where(user_id: @question.user.id).first
   json.user @question.user.username
 end
 

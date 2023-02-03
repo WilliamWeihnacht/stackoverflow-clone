@@ -9,11 +9,11 @@ import "./QuestionIndex.css";
 const QuestionIndex = props => {
     const dispatch = useDispatch();
     const history = useHistory();
+    const questions = useSelector(state => Object.values(state.questions));
     const [headerTitle,setHeaderTitle] = useState("Top Questions");
     const [order, setOrder] = useQueryParam('order', StringParam);
     const [page,setPage] = useQueryParam('page', NumberParam);
     const [query,setQuery] = useQueryParam('query', StringParam);
-    const questions = useSelector(state => Object.values(state.questions));
 
     useEffect(()=>{
         dispatch(fetchAllQuestions({page,query,order}));
@@ -110,7 +110,7 @@ const QuestionIndex = props => {
                 <select onChange={handleOptionsChange}>
                     <option value="new">Newest</option>
                     <option value="modified">Last Modified</option>
-                    {/* <option value="score">Highest Score</option> */}
+                    <option value="score">Highest Score</option>
                 </select>
                 <NavLink to={"/questions/new"}><button>New Question</button></NavLink>
                 </div>
