@@ -15,6 +15,8 @@ const QuestionIndex = props => {
     const [page,setPage] = useQueryParam('page', NumberParam);
     const [query,setQuery] = useQueryParam('query', StringParam);
 
+    if (!page) setPage(1);
+
     useEffect(()=>{
         dispatch(fetchAllQuestions({page,query,order}));
         if (query && query !== "") {
