@@ -12,11 +12,13 @@
 }
 
 .queston-list-item a {
+    cursor: pointer;
     text-decoration: none;
     color: hsl(206,100%,40%);
 }
 
 .queston-list-item a:hover {
+    cursor: pointer;
     color: hsl(209,100%,38%);
 }
 

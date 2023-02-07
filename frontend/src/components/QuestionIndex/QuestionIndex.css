@@ -19,6 +19,7 @@
 }
 
 #header-box a {
+    cursor: pointer;
     color: white;
 }
 
@@ -42,6 +43,7 @@
 }
 
 #header-box a {
+    cursor: pointer;
     color: white;
     text-decoration: none;
 }
