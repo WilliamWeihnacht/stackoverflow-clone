@@ -20,6 +20,8 @@ const QuestionShow = () => {
     const [editErrors, setEditErrors] = useState([]);
     const answers = useSelector(state => Object.values(state.answers));
     const userId = useSelector(state => state.session?.user?.id);
+
+    console.log(question)
     
     answers.sort((a,b)=>{
         if (a.score < b.score) return 1

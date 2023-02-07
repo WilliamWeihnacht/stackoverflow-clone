@@ -56,7 +56,7 @@ class Api::QuestionsController < ApplicationController
     def update
         @question = Question.find(params[:id])
         if @question.update!(question_params.except(:question_id))
-            render json: @question
+            render :show
         else
             render json: @question.errors.full_messages
         end
@@ -66,6 +66,7 @@ class Api::QuestionsController < ApplicationController
         @question = Question.find_by(id: params[:id])
         if @question
             @question.answers.destroy_all
+            @question.votes.destroy_all
             @question.delete
         end
     end

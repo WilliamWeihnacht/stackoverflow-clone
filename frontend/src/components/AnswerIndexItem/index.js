@@ -13,7 +13,7 @@ const AnswerIndexItem = ({ answer }) => {
     }
 
     let userContent = <a>{answer.user}</a>
-    if (sessionUser.id === answer.userId) {
+    if (sessionUser?.id === answer.userId) {
         userContent = <a onClick={handleDelete}>Delete this comment</a>
     }
 

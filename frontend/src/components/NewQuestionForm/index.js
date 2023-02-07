@@ -21,10 +21,10 @@ const NewQuestionForm = () => {
             body,
         }
         dispatch(createQuestion(data))
-        // .then(()=>{
-        //     Promise.resolve(history.push(`/questions?page=1`));
-        //     // setSubmitted(true);
-        // })
+        .then(()=>{
+            history.push(`/questions?page=1`);
+            // setSubmitted(true);
+        })
         .catch(async(res) => {
             let d;
             try {

@@ -106,7 +106,10 @@ const questionReducer = (state = {}, action) => {
     switch (action.type) {
       case RECEIVE_QUESTION:
         // nextState[action.payload.id] = action.payload;
-        nextState[action.payload.question.id] = action.payload.question;
+        if (action.payload.question) nextState[action.payload.question.id] = action.payload.question;
+        else nextState[action.payload.id] = action.payload
+        // else if (action.payload.)
+        // else nextState[action.payload.id] = action.payload;
         return nextState
       case RECEIVE_QUESTIONS:
         // return {...nextState, ...action.questions}
