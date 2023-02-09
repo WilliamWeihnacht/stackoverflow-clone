@@ -36,6 +36,7 @@ const AnswerIndexItem = ({ answer }) => {
         <form onSubmit={submitEdit}>
             <textarea value={answerBody} onChange={e => setAnswerBody(e.target.value)}></textarea>
             <button>Submit</button>
+            <button id='answer-edit-cancel-button' onClick={() => setEditing(false)}>Cancel</button>
         </form>
     }
 
