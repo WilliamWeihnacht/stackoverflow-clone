@@ -25,6 +25,20 @@ export const createAnswer = (answer) => async (dispatch) => {
 	}
 }
 
+export const editAnswer = (answer) => async (dispatch) => {
+	const res = await csrfFetch(`/api/answers/${answer.id}`, {
+		method: "PATCH",
+		body: JSON.stringify(answer)
+	});
+
+	if(res.ok) {
+		const data = await res.json();
+		dispatch(receiveAnswer(data))
+	} else {
+		console.log(res.statusText);
+	}
+}
+
 export const deleteAnswer = (answerId) => async (dispatch) => {
 	const res = await csrfFetch(`/api/answers/${answerId}`, {
 		method: 'DELETE',

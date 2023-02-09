@@ -17,3 +17,7 @@
     text-decoration: underline;
     float: right;
 }
+
+.answer-links {
+    margin-left: 3px;
+}

@@ -20,8 +20,6 @@ const QuestionShow = () => {
     const [editErrors, setEditErrors] = useState([]);
     const answers = useSelector(state => Object.values(state.answers));
     const userId = useSelector(state => state.session?.user?.id);
-
-    console.log(question)
     
     answers.sort((a,b)=>{
         if (a.score < b.score) return 1
@@ -58,6 +56,7 @@ const QuestionShow = () => {
             body: answerBody
         }
         dispatch(createAnswer(data))
+        .then(setAnswerBody(""))
         .catch(async (res) => {
             let d;
             try {
@@ -69,7 +68,6 @@ const QuestionShow = () => {
             else if (d) setAnswerErrors([d]);
             else setAnswerErrors([res.statusText]);
         })
-        .then(setAnswerBody(""))
     }
 
     const handleSubmitEdit = (e) => {
@@ -187,7 +185,7 @@ const QuestionShow = () => {
                     <ul className='error-list'>
                         {answerErrors.map(error => <li key={error}>{error}</li>)}
                     </ul>
-                    <textarea onChange={e => setAnswerBody(e.target.value)} />
+                    <textarea value={answerBody} onChange={e => setAnswerBody(e.target.value)} />
                     <button>Submit</button>
                 </form>
             </div>

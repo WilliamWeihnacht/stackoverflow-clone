@@ -19,8 +19,13 @@ class Api::AnswersController < ApplicationController
         end
     end
 
-    def edit
-
+    def update
+        @answer = Answer.find(params[:id])
+        if @answer.update!(answer_params)
+            render json: @answer
+        else
+            render json: @answer.errors.full_messages
+        end
     end
 
     private
