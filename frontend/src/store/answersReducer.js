@@ -16,7 +16,9 @@ export const postAnswer = (answer) => {
 
 //thunk action creators
 export const createAnswer = (answer) => async (dispatch) => {
-	const res = await postAnswer(answer);
+	const res = await postAnswer(answer)
+	.catch(err => console.log(err))
+
 	if (res.ok) {
 		const data = await res.json();
 		dispatch(receiveAnswer(data));

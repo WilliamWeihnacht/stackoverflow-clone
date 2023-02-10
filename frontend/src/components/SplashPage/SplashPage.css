@@ -1,7 +1,7 @@
 #splash-black-box {
     background-color: hsl(210,8%,25%);
-    height: 90%;
-    width: 80%;
+    height: fit-content;
+    width: 90vw;
     min-width: fit-content;
     margin: auto;
     margin-top: 60px;
@@ -19,15 +19,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 400px;
-    height: 150px;
+    width: 40vw;
+    height: 20vh;
     margin-top: 20px;
     padding: 15px;
     border-radius: 10px;
 }
 
 .splash-link-container p {
-    margin-top: 0;
+    margin: auto;
+    font-size: 2vh;
 }
 
 #right-splash-link-container {
@@ -71,7 +72,7 @@
 
 #splash-title {
     color: white;
-    font-size: 50px;
+    font-size: 5vh;
     width: 50%;
     margin: 20px auto;
 }
@@ -79,7 +80,7 @@
 #splash-title-em {
     display: inline;
     color: hsl(27,90%,55%);
-    font-size: 70px;
+    font-size: 7vh;
 }
 
 #splash-stats {
@@ -95,9 +96,9 @@
 
 #splash-stats h5 {
     color: white;
-    width: 150px;
+    /* width: 6vw; */
     margin: 2px 0;
-    font-size: 18px;
+    font-size: 2vh;
 }
 
 #splash-stats p {

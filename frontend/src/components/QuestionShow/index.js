@@ -21,14 +21,13 @@ const QuestionShow = () => {
     const answers = useSelector(state => Object.values(state.answers));
     const userId = useSelector(state => state.session?.user?.id);
     
-    answers.sort((a,b)=>{
-        if (a.score < b.score) return 1
-        if (a.score > b.score) return -1
-        return 0
-    });
-
     useEffect(() => {
         dispatch(fetchQuestion(questionId));
+        answers.sort((a,b)=>{
+            if (a.score < b.score) return 1
+            if (a.score > b.score) return -1
+            return 0
+        });
     }, [editing]);
 
     if (deleted) return <Redirect to="/questions"/>;
@@ -41,11 +40,8 @@ const QuestionShow = () => {
     }
 
     const convertDateTime = (date) => {
-        const year = date.slice(0,4);
-        const month = date.slice(5,7);
-        const day = date.slice(8,10);
-        return month + "-" + day + "-" + year;
-        // let x = new Date(date);
+        let d = new Date(date);
+        return d.toDateString()
     }
 
     const handleSubmitAnswer = async (e) => {

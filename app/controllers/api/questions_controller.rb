@@ -49,7 +49,11 @@ class Api::QuestionsController < ApplicationController
 
     def show
         @question = Question.find(params[:id])
-        @user_id = current_user.id
+        if current_user
+            @user_id = current_user.id
+        else
+            @user_id = nil
+        end
         render :show
     end
 
