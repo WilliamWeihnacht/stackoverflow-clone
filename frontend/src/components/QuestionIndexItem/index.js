@@ -7,7 +7,7 @@ const QuestionIndexItem = ({ question }) => {
         let updated = new Date(q.updatedAt);
         let created = new Date(q.createdAt);
         if (created < updated) return "Modified: " + updated.toDateString();
-        else return "Created " + created.toDateString();
+        else return "Created: " + created.toDateString();
     }
 
     return (
