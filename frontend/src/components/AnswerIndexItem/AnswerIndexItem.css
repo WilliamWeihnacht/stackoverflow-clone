@@ -19,7 +19,8 @@
 }
 
 .answer-links {
-    margin-left: 3px;
+    cursor: pointer;
+    margin-left: 5px;
 }
 
 #answer-edit-cancel-button {
