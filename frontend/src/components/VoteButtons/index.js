@@ -7,6 +7,10 @@ import './VoteButtons.css';
 
 
 const VoteButtons = ({ post }) => {
+
+    console.log(post)
+    console.log(post.score)
+
     const dispatch = useDispatch();
     const { questionId } = useParams();
     // const userVote = useSelector(state => state.questions[questionId].userVote)
@@ -14,8 +18,14 @@ const VoteButtons = ({ post }) => {
     const userVote = post.userVote;
     const [upvote,setUpvote] = useState(userVote?.upvote === true ? "upvote-active" : "upvote");
     const [downvote,setDownvote] = useState(userVote?.upvote === false ? "downvote-active" : "downvote");
-    const [scoreState,setScoreState] = useState(post.score || 0);
+    const [scoreState,setScoreState] = useState(post.score);
 
+    console.log(scoreState)
+    // console.log(`post: ${post.body}, has score ${post.score} but scoreState: ${scoreState}`)
+
+    useEffect(()=>{
+        setScoreState(post.score)
+    },[post.score])
 
     const handleUpvote = async (e) => {
         if (!sessionUser) return;
@@ -112,7 +122,7 @@ const VoteButtons = ({ post }) => {
     return (
         <div className="vote-buttons-container">
             <button id={upvote} onClick={handleUpvote}>1</button>
-            {scoreState}
+            {scoreState || 0}
             <button id={downvote} onClick={handleDownVote}>1</button>
         </div>
     )

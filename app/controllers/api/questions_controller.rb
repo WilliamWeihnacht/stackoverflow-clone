@@ -49,7 +49,7 @@ class Api::QuestionsController < ApplicationController
 
     def show
         @question = Question.find(params[:id])
-        # @user_id = current_user.id
+        @user_id = current_user.id
         render :show
     end
 
