@@ -8,6 +8,7 @@ import NewQuestionForm from "./components/NewQuestionForm";
 import QuestionShow from "./components/QuestionShow";
 import SplashPage from "./components/SplashPage";
 import NotFound from "./components/NotFound";
+import UserShow from "./components/UserShow";
 
 function App() {
   return (
@@ -27,7 +28,10 @@ function App() {
           <NewQuestionForm/>
         </Route>
         <Route exact path="/questions/:questionId">
-          <QuestionShow />
+          <QuestionShow/>
+        </Route>
+        <Route exact path="/users/:userId">
+          <UserShow/>
         </Route>
         <Route path="/splash">
           <SplashPage/>

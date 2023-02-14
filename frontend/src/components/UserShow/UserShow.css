@@ -1,0 +1,25 @@
+#users-show-container {
+    margin-top: 50px;
+}
+
+#user-show-tab-container {
+    display: flex;
+    flex-direction: column;
+    margin: 5px 0;
+}
+
+#user-show-username {
+    margin: 0;
+}
+
+#user-show-questions-button {
+    margin-right: 5px !important;
+}
+
+.user-show-button {
+    
+}
+
+.user-show-button-active {
+    color: red;
+}
