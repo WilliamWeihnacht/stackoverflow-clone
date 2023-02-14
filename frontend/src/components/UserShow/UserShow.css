@@ -13,9 +13,20 @@
 }
 
 #user-show-questions-button {
-    margin-right: 5px !important;
+    margin-right: 5px;
 }
 
 .user-show-button-active {
-    color: red;
+    cursor: default;
+    color: hsl(206,100%,52%);
+    background-color: white;
+    border: 1px solid hsl(206,100%,52%);
+}
+
+.user-show-button-active:hover {
+    background-color: rgb(243, 243, 243) !important;
+}
+
+#user-posts-count {
+    color: gray;
 }

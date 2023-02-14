@@ -18,6 +18,7 @@ const UserShow = () => {
     if (!user) return <h1>User Not Found</h1>
 
     const questions = Object.values(user.questions);
+    const answers = Object.values(user.answers);
     const userProfile = user.user;
     
     console.log(user)
@@ -30,11 +31,12 @@ const UserShow = () => {
                     <div id="user-show-buttons-container">
                         <button className={questionsTab ? "user-show-button-active" : "user-show-button"} id="user-show-questions-button" onClick={()=>setTab(true)}>Questions</button>
                         <button className={!questionsTab ? "user-show-button-active" : "user-show-button"} id="user-show-answers-button" onClick={()=>setTab(false)}>Answers</button>
-                        <span></span>
                     </div>
+                    <span id="user-posts-count">{`${questionsTab ? questions.length : answers.length} ${questionsTab ? "questions asked" : "answers given"}`}</span>
                 </div>
                 <span id="user-stats">
-                    {}
+                    <h7>{`Member since ${new Date(userProfile.createdAt).toLocaleDateString()}`}</h7>
+                    <h7></h7>
                 </span>
             </div>
             <ul>

@@ -23,6 +23,11 @@ class User < ApplicationRecord
     class_name: :Question,
     dependent: :destroy
 
+    has_many :answers,
+    foreign_key: :user_id,
+    class_name: :Answer,
+    dependent: :destroy
+
     def self.find_by_credentials(username, password)
         if URI::MailTo::EMAIL_REGEXP.match(username)
             @user = User.find_by(email: username)
