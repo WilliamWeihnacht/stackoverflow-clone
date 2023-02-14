@@ -155,7 +155,7 @@ const QuestionShow = () => {
                     </div>
                     <div id='question-content-container'>
                         <p>{question.body}</p>
-                        <span id='op-username'><em>Asked by </em>{question.user}</span>
+                        <span id='op-username'><em>Asked by </em><a href={`/users/${question.userId}`}>{question.user}</a></span>
                     </div>
                 </div>
             </>

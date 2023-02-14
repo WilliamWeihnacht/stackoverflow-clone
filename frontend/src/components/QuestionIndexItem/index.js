@@ -19,7 +19,7 @@ const QuestionIndexItem = ({ question }) => {
                 <span>|</span>
                 <span>{displayDate(question)}</span>
             </div>
-            <a id='user-link'>{question.user}</a>
+            <a id='user-link' href={`/users/${question.userId}`}>{question.user}</a>
         </li>
     )
 }

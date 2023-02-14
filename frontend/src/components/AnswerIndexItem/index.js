@@ -40,7 +40,7 @@ const AnswerIndexItem = ({ answer }) => {
         </form>
     }
 
-    let userContent = <a>{answer.user}</a>
+    let userContent = <a href={`/users/${answer.userId}`}>{answer.user}</a>
     if (sessionUser?.id === answer.userId) {
         userContent = <>
             <a onClick={handleDelete} className='answer-links'>Delete </a>

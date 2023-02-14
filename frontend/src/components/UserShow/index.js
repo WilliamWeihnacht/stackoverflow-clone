@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { fetchUser } from "../../store/usersReducer";
 import QuestionIndexItem from "../QuestionIndexItem";
+import UserAnswerIndexItem from "../UserAnswerIndexItem";
 import './UserShow.css';
 
 const UserShow = () => {
@@ -15,13 +16,18 @@ const UserShow = () => {
         dispatch(fetchUser(userId));
     },[userId])
 
-    if (!user) return <h1>User Not Found</h1>
+    if (!user) return <h1 id="user-not-found-h1">User Not Found</h1>
 
     const questions = Object.values(user.questions);
     const answers = Object.values(user.answers);
     const userProfile = user.user;
     
-    console.log(user)
+    let content;
+    if (questionsTab) {
+        content = questions?.map((question, i) => <QuestionIndexItem question={question} key={i}/>)
+    } else {
+        content = answers?.map((answer, i) => <UserAnswerIndexItem answer={answer} key={i}/>)
+    }
 
     return (
         <div id="users-show-container">
@@ -35,12 +41,11 @@ const UserShow = () => {
                     <span id="user-posts-count">{`${questionsTab ? questions.length : answers.length} ${questionsTab ? "questions asked" : "answers given"}`}</span>
                 </div>
                 <span id="user-stats">
-                    <h7>{`Member since ${new Date(userProfile.createdAt).toLocaleDateString()}`}</h7>
-                    <h7></h7>
+                    <h5>{`Member since ${new Date(userProfile.createdAt).toLocaleDateString()}`}</h5>
                 </span>
             </div>
             <ul>
-                {questions?.map((question, i) => <QuestionIndexItem question={question} key={i}/>)}
+                {content}
             </ul>
         </div>
     )
