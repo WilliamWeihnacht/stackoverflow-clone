@@ -11,7 +11,7 @@ const UserAnswerIndexItem = ({ answer }) => {
     }
 
     return (
-        <li className='queston-list-item'>
+        <li className='question-list-item'>
             <Link to={`/questions/${answer.questionId}`} >{answer.body}</Link>
             <div className='question-stats'>
                 <span>{answer.voteCount} {answer.voteCount === 1 ? "Vote" : "Votes"}</span>

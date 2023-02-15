@@ -1,4 +1,4 @@
-.queston-list-item {
+.question-list-item {
     width: 96%;
     padding: 20px;
     border-top: 1px solid gray;
@@ -6,11 +6,11 @@
     list-style: none;
 }
 
-.queston-list-item:last-of-type {
+.question-list-item:last-of-type {
     border-bottom: 1px solid gray;
 }
 
-.queston-list-item a {
+.question-list-item a {
     display: inline-block;
     height: 20px;
     text-overflow: clip;
@@ -20,7 +20,7 @@
     color: hsl(206,100%,40%);
 }
 
-.queston-list-item a:hover {
+.question-list-item a:hover {
     cursor: pointer;
     color: hsl(209,100%,38%);
 }
