@@ -1,13 +1,12 @@
 .queston-list-item {
-    width: 50%;
-    margin: auto;
+    width: 96%;
     padding: 20px;
     border-top: 1px solid gray;
     border-left: 1px solid gray;
     list-style: none;
 }
 
-.queston-list-item:last-child {
+.queston-list-item:last-of-type {
     border-bottom: 1px solid gray;
 }
 

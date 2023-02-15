@@ -1,6 +1,5 @@
 .question-page-container {
     margin: auto;
-    margin-top: 50px;
     width: 70%;
 }
 
@@ -34,7 +33,6 @@
 .question-header h1 {
     overflow: hidden;
     margin: 0;
-    padding-top: 50px;
 }
 
 .question-header a {

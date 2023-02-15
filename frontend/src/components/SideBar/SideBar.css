@@ -1,0 +1,29 @@
+#sidebar, #sidebar-links {
+    display: flex;
+    flex-direction: column;
+}
+
+#sidebar {
+    align-content: stretch;
+    align-items: flex-end;
+    height: auto;
+    /* width: 164px; */
+}
+
+#sidebar-links {
+    position: sticky;
+    top: 170px;
+    width: 100%;
+}
+
+.sidebar-link {
+    color: gray;
+    /* padding: 16px 16px 16px 8px; */
+    text-align: end;
+    text-decoration: none;
+    width: 100%;
+}
+
+.sidebar-link :active {
+    background-color: grey;
+}

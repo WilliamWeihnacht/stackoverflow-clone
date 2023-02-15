@@ -1,4 +1,10 @@
+.navbar, #navbar-content {
+    display: flex;
+    align-items: center;
+}
+
 .navbar {
+    justify-content: center;
     position: fixed;
     overflow: hidden;
     width: 100%;
@@ -13,15 +19,13 @@
 }
 
 #navbar-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    width: 1075px;
+    height: 47px;
 }
 
 .navbar li {
-    height: 100%;
-    width: 100%;
-    padding-right: 5px;
+    
 }
 
 #logo-li a {
@@ -56,18 +60,12 @@
 }
 
 .navbar input {
-    width: 90%;
     padding-top: 8px;
     padding-bottom: 8px;
     margin-left: 5px;
 }
 
 .logo-image {
-    /* background-image: url(../../img/navbar-logo.png); */
-    /* background-image: url(../../img/new-logo.png); */
-    /* background-size: cover;
-    background-repeat: no-repeat; */
-    /* color: transparent; */
     color: black;
     padding: 5px;
 }

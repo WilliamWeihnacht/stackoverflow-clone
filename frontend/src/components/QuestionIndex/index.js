@@ -104,7 +104,6 @@ const QuestionIndex = props => {
     }
 
     return (
-        <>
         <div className='question-feed'>
             <div id='header-box'>
                 <h1>{headerTitle}</h1>
@@ -118,11 +117,10 @@ const QuestionIndex = props => {
                 </div>
             </div>
             {questions?.map((question, i) => <QuestionIndexItem question={question} key={i}/>)}
+            <div id='page-buttons-div'>
+                {pageButtons}
+            </div>
         </div>
-        <div id='page-buttons-div'>
-            {pageButtons}
-        </div>
-        </>
     )
 }
 

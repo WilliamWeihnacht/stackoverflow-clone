@@ -44,7 +44,7 @@ const UserShow = () => {
                     <h5>{`Member since ${new Date(userProfile.createdAt).toLocaleDateString()}`}</h5>
                 </span>
             </div>
-            <ul>
+            <ul className="question-feed">
                 {content}
             </ul>
         </div>

@@ -9,13 +9,16 @@ import QuestionShow from "./components/QuestionShow";
 import SplashPage from "./components/SplashPage";
 import NotFound from "./components/NotFound";
 import UserShow from "./components/UserShow";
+import SideBar from "./components/SideBar";
 
 function App() {
   return (
     <>
       <Navigation/>
+      <div id="main-content">
       <Switch>
         <Route exact path="/questions">
+          <SideBar/>
           <QuestionIndex/>
         </Route>
         <Route path="/login">
@@ -28,18 +31,22 @@ function App() {
           <NewQuestionForm/>
         </Route>
         <Route exact path="/questions/:questionId">
+          <SideBar/>
           <QuestionShow/>
         </Route>
         <Route exact path="/users/:userId">
+          <SideBar/>
           <UserShow/>
         </Route>
         <Route path="/splash">
           <SplashPage/>
         </Route>
         <Route path="*">
+          <SideBar/>
           <NotFound/>
         </Route>
       </Switch>
+      </div>
     </>
   );
 }

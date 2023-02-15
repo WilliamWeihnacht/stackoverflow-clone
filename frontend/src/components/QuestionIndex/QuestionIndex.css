@@ -1,5 +1,6 @@
 .question-feed {
-    margin-top: 50px;
+    /* width: 70%; */
+    width: 1000px;
     min-width: fit-content;
 }
 
@@ -10,7 +11,7 @@
 
 #header-box {
     min-width: 400px;
-    width: 50%;
+    width: 100%;
     margin: auto;
     display: flex;
     flex-direction: row;

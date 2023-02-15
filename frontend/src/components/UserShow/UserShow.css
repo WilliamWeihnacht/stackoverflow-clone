@@ -1,7 +1,3 @@
-#users-show-container {
-    margin-top: 50px;
-}
-
 #user-show-tab-container {
     display: flex;
     flex-direction: column;

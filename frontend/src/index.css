@@ -1,6 +1,5 @@
 @import-normalize;
 
-/* TODO Add site wide styles */
 body {
     margin: 0;
     padding-bottom: 20px;
@@ -43,4 +42,13 @@ ul {
     background-color: lightcoral;
     color: darkred;
     border: 1px solid darkred;
+}
+
+#main-content {
+    width: 100%;
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    /* min-height: 90vh; */
 }
