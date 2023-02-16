@@ -20,12 +20,8 @@
 
 #navbar-content {
     justify-content: space-between;
-    width: 1075px;
+    width: 1164px;
     height: 47px;
-}
-
-.navbar li {
-    
 }
 
 #logo-li a {
@@ -53,10 +49,6 @@
 
 #search-li {
     flex-grow: 100;
-}
-
-#session-li {
-    
 }
 
 .navbar input {

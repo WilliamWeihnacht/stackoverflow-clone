@@ -5,9 +5,9 @@ const SideBar = () => {
     return (
         <div id='sidebar'>
             <div id='sidebar-links'>
-                <NavLink exact to={'/'} className='sidebar-link'>Home</NavLink>
-                <NavLink to={'/questions'} className='sidebar-link'>Questions</NavLink>
-                <NavLink to={'/'} className='sidebar-link'>Users</NavLink>
+                <NavLink exact to={'/'} className='sidebar-link' activeClassName='sidebar-link-active'>Home</NavLink>
+                <NavLink to={'/questions'} className='sidebar-link' activeClassName='sidebar-link-active'>Questions</NavLink>
+                <NavLink to={'/users'} className='sidebar-link' activeClassName='sidebar-link-active'>Users</NavLink>
             </div>
         </div>
     )

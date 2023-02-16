@@ -7,23 +7,26 @@
     align-content: stretch;
     align-items: flex-end;
     height: auto;
-    /* width: 164px; */
+    width: 164px;
 }
 
 #sidebar-links {
     position: sticky;
-    top: 170px;
+    top: 130px;
     width: 100%;
 }
 
 .sidebar-link {
+    font-size: 18px;
     color: gray;
-    /* padding: 16px 16px 16px 8px; */
+    padding: 16px 16px 16px 8px;
     text-align: end;
     text-decoration: none;
-    width: 100%;
 }
 
-.sidebar-link :active {
-    background-color: grey;
+.sidebar-link-active {
+    background-color: lightgray;
+    color: black;
+    padding-right: 13px;
+    border-right: 3px solid hsl(27,90%,55%);;
 }
