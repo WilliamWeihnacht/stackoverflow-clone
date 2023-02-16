@@ -58,7 +58,7 @@
 }
 
 #no-results-h1 {
-    width: 80%;
+    width: 100%;
     margin: auto;
     text-align: center;
     text-decoration: none;
@@ -101,6 +101,7 @@
 }
 
 #back-button {
+    cursor: pointer;
     text-decoration: underline;
     color: hsl(206,100%,52%);
 }

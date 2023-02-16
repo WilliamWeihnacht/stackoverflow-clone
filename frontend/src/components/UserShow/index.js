@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
+import { useParams, useHistory } from "react-router";
 import { fetchUser } from "../../store/usersReducer";
 import QuestionIndexItem from "../QuestionIndexItem";
 import UserAnswerIndexItem from "../UserAnswerIndexItem";
@@ -8,6 +8,7 @@ import './UserShow.css';
 
 const UserShow = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const {userId} = useParams();
     const user = useSelector(state => state.users["user"]);
     const [questionsTab,setTab] = useState(true); //true => questions tab is active, false => answers tab is active
@@ -16,7 +17,14 @@ const UserShow = () => {
         dispatch(fetchUser(userId));
     },[userId])
 
-    if (!user) return <h1 id="user-not-found-h1">User Not Found</h1>
+    if (!user) return (
+        <>
+            <h1 id='no-results-h1'>No Results...</h1>
+            <div id='back-button-div'>
+                <a onClick={()=>history.goBack()} id="back-button">Go Back</a>
+            </div>
+        </>
+    )
 
     const questions = Object.values(user.questions);
     const answers = Object.values(user.answers);

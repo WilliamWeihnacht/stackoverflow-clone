@@ -1,6 +1,7 @@
 .question-page-container {
-    margin: auto;
-    width: 70%;
+    width: 1000px;
+    border-left: 1px solid gray;
+    padding-left: 20px;
 }
 
 .question-page-container textarea {

@@ -7,9 +7,9 @@
     list-style: none;
 }
 
-.question-list-item:last-of-type {
+/* .question-list-item:last-of-type {
     border-bottom: 1px solid gray;
-}
+} */
 
 .question-list-item a {
     display: inline-block;

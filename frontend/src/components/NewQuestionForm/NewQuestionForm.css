@@ -2,7 +2,7 @@
     /* 97.2307692rem */
     max-width: calc(((calc(150rem) / 12)) * 3);
     min-width: 200px;
-    margin-top: 100px;
+    /* margin-top: 100px; */
     margin-left: auto;
     margin-right: auto;
     border-radius: 7px;

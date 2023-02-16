@@ -28,6 +28,7 @@
 .sidebar-link-active {
     background-color: lightgray;
     color: black;
+    font-weight: 500;
     padding-right: 13px;
     border-right: 3px solid hsl(27,90%,55%);;
 }
