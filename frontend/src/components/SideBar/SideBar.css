@@ -12,8 +12,9 @@
 
 #sidebar-links {
     position: sticky;
-    top: 130px;
+    top: 50px;
     width: 100%;
+    z-index: 0;
 }
 
 .sidebar-link {

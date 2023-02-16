@@ -1,8 +1,9 @@
 .question-list-item {
     width: 96%;
+    max-width: 1000px;
     padding: 20px;
     border-top: 1px solid gray;
-    border-left: 1px solid gray;
+    /* border-left: 1px solid gray; */
     list-style: none;
 }
 

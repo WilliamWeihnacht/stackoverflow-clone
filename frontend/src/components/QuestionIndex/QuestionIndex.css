@@ -2,6 +2,7 @@
     /* width: 70%; */
     width: 1000px;
     min-width: fit-content;
+    border-left: 1px solid gray;
 }
 
 .question-feed ul {
@@ -19,20 +20,18 @@
     justify-content: space-between;
 }
 
+/* #header-box:first-child {
+    padding-left: 16px;
+} */
+
+#header-box > h1 {
+    padding-left: 16px;
+}
+
 #header-box a {
     cursor: pointer;
     color: white;
 }
-
-/* #header-box button {
-    margin: 0px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-radius: 3px;
-    border: 0;
-    background-color: hsl(206,100%,52%);
-    color: white;
-} */
 
 #header-box button:hover {
     background-color: hsl(206,100%,40%);

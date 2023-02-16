@@ -30,7 +30,7 @@ const UserShow = () => {
     }
 
     return (
-        <div id="users-show-container">
+        <div id="users-show-container" className="question-feed">
             <div id="header-box">
                 <div id="user-show-tab-container">
                     <h1 id="user-show-username">{userProfile.username}</h1>
@@ -44,7 +44,7 @@ const UserShow = () => {
                     <h5>{`Member since ${new Date(userProfile.createdAt).toLocaleDateString()}`}</h5>
                 </span>
             </div>
-            <ul className="question-feed">
+            <ul>
                 {content}
             </ul>
         </div>
