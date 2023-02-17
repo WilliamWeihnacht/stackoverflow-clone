@@ -17,7 +17,7 @@
     text-overflow: clip;
     overflow: hidden;
     cursor: pointer;
-    text-decoration: none;
+    /* text-decoration: none; */
     color: hsl(206,100%,40%);
 }
 
