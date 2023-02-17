@@ -1,7 +1,8 @@
 #splash-black-box {
     background-color: hsl(210,8%,25%);
     height: fit-content;
-    width: 90vw;
+    /* width: 90vw; */
+    width: 1164px;
     min-width: fit-content;
     margin: auto;
     margin-top: 20px;
