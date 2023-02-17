@@ -1,6 +1,3 @@
-@import-normalize;
-
-/* TODO Add site wide styles */
 body {
     margin: 0;
     padding-bottom: 20px;
@@ -15,6 +12,7 @@ button {
     /* border: 1px outset gray; */
     background-color: hsl(206,100%,52%);
     color: white;
+    cursor: pointer;
 }
 
 button:hover {
@@ -42,4 +40,14 @@ ul {
     background-color: lightcoral;
     color: darkred;
     border: 1px solid darkred;
+}
+
+#main-content {
+    width: 100%;
+    margin-top: 15px;
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    /* min-height: 90vh; */
 }

@@ -11,7 +11,7 @@ const QuestionIndexItem = ({ question }) => {
     }
 
     return (
-        <li className='queston-list-item'>
+        <li className='question-list-item'>
             <Link to={`/questions/${question.id}`}>{question.title}</Link>
             <div className='question-stats'>
                 <span>{question.answerCount} {question.answerCount === 1 ? "Answer" : "Answers"}</span>
@@ -19,7 +19,7 @@ const QuestionIndexItem = ({ question }) => {
                 <span>|</span>
                 <span>{displayDate(question)}</span>
             </div>
-            <a id='user-link'>{question.user}</a>
+            <a id='user-link' href={`/users/${question.userId}`}>{question.user}</a>
         </li>
     )
 }

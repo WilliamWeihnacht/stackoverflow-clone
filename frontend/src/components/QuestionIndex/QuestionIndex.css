@@ -1,6 +1,8 @@
 .question-feed {
-    margin-top: 50px;
+    /* width: 70%; */
+    width: 1000px;
     min-width: fit-content;
+    border-left: 1px solid gray;
 }
 
 .question-feed ul {
@@ -10,7 +12,7 @@
 
 #header-box {
     min-width: 400px;
-    width: 50%;
+    width: 100%;
     margin: auto;
     display: flex;
     flex-direction: row;
@@ -18,18 +20,16 @@
     justify-content: space-between;
 }
 
-#header-box a {
-    cursor: pointer;
-    color: white;
+/* #header-box:first-child {
+    padding-left: 16px;
+} */
+
+#header-box > h1 {
+    padding-left: 16px;
 }
 
-#header-box button {
-    margin: 0px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-radius: 3px;
-    border: 0;
-    background-color: hsl(206,100%,52%);
+#header-box a {
+    cursor: pointer;
     color: white;
 }
 
@@ -58,7 +58,7 @@
 }
 
 #no-results-h1 {
-    width: 80%;
+    width: 100%;
     margin: auto;
     text-align: center;
     text-decoration: none;
@@ -101,6 +101,7 @@
 }
 
 #back-button {
+    cursor: pointer;
     text-decoration: underline;
     color: hsl(206,100%,52%);
 }

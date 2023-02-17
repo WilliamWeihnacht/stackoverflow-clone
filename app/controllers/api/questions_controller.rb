@@ -2,7 +2,7 @@ class Api::QuestionsController < ApplicationController
     before_action :require_logged_in, only: [:create, :update, :destroy]
 
     def index
-        num_results = 10
+        num_results = 20
         page = params[:page].to_i
         query_arr = params[:query].downcase.split(" ") if params[:query]
        

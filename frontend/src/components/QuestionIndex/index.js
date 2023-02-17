@@ -104,7 +104,6 @@ const QuestionIndex = props => {
     }
 
     return (
-        <>
         <div className='question-feed'>
             <div id='header-box'>
                 <h1>{headerTitle}</h1>
@@ -112,17 +111,16 @@ const QuestionIndex = props => {
                 <select onChange={handleOptionsChange}>
                     <option value="new">Newest</option>
                     <option value="modified">Last Modified</option>
-                    <option value="score">Highest Score</option>
+                    {/* <option value="score">Highest Score</option> */}
                 </select>
                 <NavLink to={"/questions/new"}><button>New Question</button></NavLink>
                 </div>
             </div>
             {questions?.map((question, i) => <QuestionIndexItem question={question} key={i}/>)}
+            <div id='page-buttons-div'>
+                {pageButtons}
+            </div>
         </div>
-        <div id='page-buttons-div'>
-            {pageButtons}
-        </div>
-        </>
     )
 }
 

@@ -1,0 +1,29 @@
+#user-show-tab-container {
+    display: flex;
+    flex-direction: column;
+    margin: 5px 0;
+    padding-left: 16px;
+}
+
+#user-show-username {
+    margin: 0;
+}
+
+#user-show-questions-button {
+    margin-right: 5px;
+}
+
+.user-show-button-active {
+    cursor: default;
+    color: hsl(206,100%,52%);
+    background-color: white;
+    border: 1px solid hsl(206,100%,52%);
+}
+
+.user-show-button-active:hover {
+    background-color: rgb(243, 243, 243) !important;
+}
+
+#user-posts-count {
+    color: gray;
+}

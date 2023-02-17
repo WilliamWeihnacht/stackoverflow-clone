@@ -1,7 +1,7 @@
 .question-page-container {
-    margin: auto;
-    margin-top: 50px;
-    width: 70%;
+    width: 1000px;
+    border-left: 1px solid gray;
+    padding-left: 20px;
 }
 
 .question-page-container textarea {
@@ -34,7 +34,6 @@
 .question-header h1 {
     overflow: hidden;
     margin: 0;
-    padding-top: 50px;
 }
 
 .question-header a {
@@ -92,13 +91,6 @@
 
 #question-update-button {
     margin-right: 10px;
-}
-
-/**/
-
-
-.question-answers-container ul {
-
 }
 
 .question-answers-container li {
