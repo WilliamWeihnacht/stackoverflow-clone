@@ -10,6 +10,7 @@ import SplashPage from "./components/SplashPage";
 import NotFound from "./components/NotFound";
 import UserShow from "./components/UserShow";
 import SideBar from "./components/SideBar";
+import UserIndex from "./components/UserIndex";
 
 function App() {
   return (
@@ -33,6 +34,10 @@ function App() {
         <Route exact path="/questions/:questionId">
           <SideBar/>
           <QuestionShow/>
+        </Route>
+        <Route exact path="/users">
+          <SideBar/>
+          <UserIndex/>
         </Route>
         <Route exact path="/users/:userId">
           <SideBar/>
