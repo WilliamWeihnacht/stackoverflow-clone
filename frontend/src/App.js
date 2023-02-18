@@ -11,6 +11,7 @@ import NotFound from "./components/NotFound";
 import UserShow from "./components/UserShow";
 import SideBar from "./components/SideBar";
 import UserIndex from "./components/UserIndex";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
         </Route>
       </Switch>
       </div>
+      <Footer/>
     </>
   );
 }
