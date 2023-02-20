@@ -9,6 +9,13 @@
     align-items: center;
 }
 
+#footer-content-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1164px;
+}
+
 .footer-div {
     display: flex;
     flex-direction: column;
@@ -21,15 +28,23 @@
 
 .footer-div h4 {
     color: rgb(186, 191, 196);
+    margin: 2px 0;
 }
 
 .footer-div a {
     text-decoration: underline;
     cursor: pointer;
     color: rgb(145, 163, 131);
+    font-size: 12px;
 }
 
-#center-footer-div {
+/* #center-footer-div {
     border-left: 1px solid lightgray;
     border-right: 1px solid lightgray;
+} */
+
+#big-logo-div {
+    display: flex;
+    font-size: 50px;
+    text-decoration: none;
 }
