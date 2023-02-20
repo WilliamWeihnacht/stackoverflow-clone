@@ -64,7 +64,7 @@
     text-decoration: none;
     padding-top: 10px;
     font-size: 20px;
-    border-top: 1px solid gray;
+    /* border-top: 1px solid gray; */
 }
 
 #page-buttons-div {

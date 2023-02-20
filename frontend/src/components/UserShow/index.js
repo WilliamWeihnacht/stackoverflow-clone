@@ -19,15 +19,17 @@ const UserShow = () => {
 
     if (!user) return (
         <>
+            <div id="users-show-container" className="question-feed">
             <h1 id='no-results-h1'>No Results...</h1>
             <div id='back-button-div'>
                 <a onClick={()=>history.goBack()} id="back-button">Go Back</a>
             </div>
+            </div>
         </>
     )
 
-    const questions = Object.values(user.questions);
-    const answers = Object.values(user.answers);
+    const questions = user.questions ? Object.values(user.questions) : [];
+    const answers = user.answers ? Object.values(user.answers) : [];
     const userProfile = user.user;
     
     let content;

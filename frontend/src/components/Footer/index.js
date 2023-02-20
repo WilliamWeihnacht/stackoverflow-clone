@@ -12,8 +12,8 @@ const Footer = () => {
                 </div>
                 <div className="footer-div">
                     <h4>Socials</h4>
-                    <a href='https://www.linkedin.com/in/william-weihnacht/'>LinkedIn</a>
                     <a href="https://github.com/WilliamWeihnacht">GitHub</a>
+                    <a href='https://www.linkedin.com/in/william-weihnacht/'>LinkedIn</a>
                     <a href="https://angel.co/u/will-weihnacht">WellFound</a>
                 </div>
                 <div className="footer-div" id="center-footer-div">

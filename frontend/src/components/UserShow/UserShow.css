@@ -13,15 +13,19 @@
     margin-right: 5px;
 }
 
-.user-show-button-active {
-    cursor: default;
+.user-show-button {
+    cursor: pointer;
     color: hsl(206,100%,52%);
     background-color: white;
     border: 1px solid hsl(206,100%,52%);
 }
 
-.user-show-button-active:hover {
+.user-show-button:hover {
     background-color: rgb(243, 243, 243) !important;
+}
+
+.user-show-button-active {
+    cursor: not-allowed;
 }
 
 #user-posts-count {

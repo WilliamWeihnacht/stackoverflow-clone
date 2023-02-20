@@ -33,8 +33,10 @@ const QuestionShow = () => {
     if (deleted) return <Redirect to="/questions"/>;
     if (!question) {
         return (
-            <div className='question-header'>
-                <h1>Question not found</h1>
+            <div className='question-page-container'>
+                <div className='question-header'>
+                    <h1>Question not found</h1>
+                </div>
             </div>
         )
     }

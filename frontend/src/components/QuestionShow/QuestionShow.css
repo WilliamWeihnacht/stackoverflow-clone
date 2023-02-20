@@ -90,6 +90,10 @@
     float: right;
 }
 
+#op-username > a {
+    color: hsl(206,100%,40%);
+}
+
 #question-update-button {
     margin-right: 10px;
 }
