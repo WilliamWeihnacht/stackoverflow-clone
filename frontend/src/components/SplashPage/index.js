@@ -13,11 +13,13 @@ const SplashPage = () => {
                         <div className='icon-div' id='mag-glass-div'></div>
                         <p>Find the best answer to your technical question, help others answer theirs</p>
                         <Link to="/signup"><button id='splash-sign-up-button'>Join the community</button></Link>
+                        <div className='right-bubble-triangle' id='first-right-triangle'></div>
                     </div>
                     <div className='splash-link-container' id='right-splash-link-container'>
                         <div className='icon-div' id='computer-icon-div'></div>
                         <p>Help others hack the pentagon or whatever, we don't really care</p>
                         <Link to="/login"><button id='splash-login-button'>Jump back in</button></Link>
+                        <div className='left-bubble-triangle' id='first-left-triangle'></div>
                     </div>
                 </div>
                 <div id='title-container'>
