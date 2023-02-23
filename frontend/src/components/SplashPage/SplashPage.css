@@ -1,12 +1,13 @@
 #splash-black-box {
     background-color: hsl(210,8%,25%);
-    height: fit-content;
+    height: 1500px;
     width: 1164px;
     min-width: fit-content;
     margin: auto;
     margin-top: 20px;
     border-radius: 10px;
     text-align: center;
+    padding: 10px;
 }
 
 #splash-link-flexbox {
@@ -24,18 +25,16 @@
     border-radius: 10px;
 }
 
-.splash-link-container p {
-    margin: auto;
-}
-
 #right-splash-link-container {
     background-color: hsl(206,90%,69.5%);
     margin-left: 10px;
+    width: 100%;
 }
 
 #left-splash-link-container {
     background-color: hsl(27,90%,83%);
     margin-right: 10px;
+    width: 100%;
 }
 
 .icon-div {
@@ -65,6 +64,7 @@
 }
 
 #splash-title {
+    font-size: 50px;
     color: white;
     width: 50%;
     margin: 20px auto;
@@ -83,7 +83,7 @@
 
 #splash-stats div {
     width: 150px;
-    height: 100px;
+    height: 60px;
 }
 
 #splash-stats h5 {
@@ -95,4 +95,85 @@
     color: gray;
     margin: 0;
     font-size: 12px;
+}
+
+#speach-bubbles-container {
+    /* margin: 0 10px; */
+}
+
+#speach-bubbles-header {
+    /* font-size: 24px; */
+    color: white;
+}
+
+.left-bubble, .right-bubble {
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.left-bubble p, .right-bubble p {
+    font-size: 20px;
+}
+
+.left-bubble {
+    background-color: hsl(206,90%,69.5%);;
+}
+
+.right-bubble {
+    background-color: hsl(27,90%,83%);
+}
+
+.left-bubble-triangle, .right-bubble-triangle {
+    border-bottom: 30px solid transparent;
+    border-top: 30px solid transparent;
+    height: 0;
+    margin-bottom: -30px;
+    margin-top: -30px;
+    width: 0;
+}
+
+.left-bubble-triangle {
+    border-left: 30px solid hsl(206,90%,69.5%);
+}
+
+.right-bubble-triangle {
+    border-right: 30px solid hsl(27,90%,83%);
+}
+
+.left-bubble-container, .right-bubble-container {
+    padding-bottom: 40px;
+}
+
+.left-bubble-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: -10px;
+    /* padding-left: 20px; */
+    width: 100%;
+}
+
+.right-bubble-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: -10px;
+    /* padding-right: 20px; */
+    width: 100%;
+}
+
+.left-bubble-content {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+}
+
+.right-bubble-content {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+}
+
+#post-bubbles-button {
+    margin-top: 50px;
+    width: 50%;
+    font-size: 20px;
 }

@@ -21,7 +21,7 @@ const SplashPage = () => {
                     </div>
                 </div>
                 <div id='title-container'>
-                    <h1 id='splash-title'>Every<br></br><div id='splash-title-em'>hacker<br></br></div> has a tab open to <br></br>Hack Overload</h1>
+                    <h1 id='splash-title'>Every<br/><div id='splash-title-em'>hacker<br/></div> has a tab open to <br/>Hack Overload</h1>
                 </div>
                 <span id='splash-stats'>
                     <div>
@@ -41,6 +41,58 @@ const SplashPage = () => {
                         <p>Questions seeded every day</p>
                     </div>
                 </span>
+                <div id='speach-bubbles-container'>
+                    <h2 id='speach-bubbles-header'>Chat with likeminded individuals</h2>
+                    <div className='left-bubble-container'>
+                        <div className='left-bubble-content'>
+                            <div className='left-bubble'>
+                                <p>How do I bypass a firewall? Asking for non-malicous reasons ;&#41;</p>
+                            </div>
+                            <div className='left-bubble-triangle'></div>
+                        </div>
+                    </div>
+                    <div className='right-bubble-container'>
+                        <div className='right-bubble-content'>
+                            <div className='right-bubble'>
+                                <p>I've marked this as a duplicate. Please refer to this question: "How can I bypass this firewall".</p>
+                            </div>
+                            <div className='right-bubble-triangle'></div>
+                        </div>
+                    </div>
+                    <div className='left-bubble-container'>
+                        <div className='left-bubble-content'>
+                            <div className='left-bubble'>
+                                <p>Oh okay, I'm sorry. I didn't realize my question had already been answered.</p>
+                            </div>
+                            <div className='left-bubble-triangle'></div>
+                        </div>
+                    </div>
+                    <div className='right-bubble-container'>
+                        <div className='right-bubble-content'>
+                            <div className='right-bubble'>
+                                <p>It's no problem. If you want to thank the poster, be sure to give their post a vote.</p>
+                            </div>
+                            <div className='right-bubble-triangle'></div>
+                        </div>
+                    </div>
+                    <div className='left-bubble-container'>
+                        <div className='left-bubble-content'>
+                            <div className='left-bubble'>
+                                <p>I'm in! Thanks for pointing me in the right direction.</p>
+                            </div>
+                            <div className='left-bubble-triangle'></div>
+                        </div>
+                    </div>
+                    <div className='right-bubble-container'>
+                        <div className='right-bubble-content'>
+                            <div className='right-bubble'>
+                                <p>Of course. Happy hacking!</p>
+                            </div>
+                            <div className='right-bubble-triangle'></div>
+                        </div>
+                    </div>
+                    <Link to={'/signup'}><button id='post-bubbles-button'>Let me in!</button></Link>
+                </div>
             </div>
         </>
     )
