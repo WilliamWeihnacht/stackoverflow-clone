@@ -42,7 +42,7 @@ const SplashPage = () => {
                     </div>
                 </span>
                 <div id='speach-bubbles-container'>
-                    <h2 id='speach-bubbles-header'>Chat with likeminded individuals</h2>
+                    <h2 id='speach-bubbles-header'>Chat with like-minded individuals</h2>
                     <div className='left-bubble-container'>
                         <div className='left-bubble-content'>
                             <div className='left-bubble'>
