@@ -73,3 +73,9 @@ Going to a user's page will show all their questions and answers.
 To make a new user go to /signup or click the sign up button in the nav bar.
 
 <img width="583" alt="Screen Shot 2023-03-02 at 6 42 19 PM" src="https://user-images.githubusercontent.com/10673921/222618112-a11375d3-bf8f-4a5e-b049-418f79b2555a.png">
+
+### Search
+
+To make a search type something in the search bar and press your enter key.
+
+<img width="1125" alt="Screen Shot 2023-03-02 at 6 44 47 PM" src="https://user-images.githubusercontent.com/10673921/222618452-22c0c957-cef1-4aba-9ed3-fc653b24cefa.png">
