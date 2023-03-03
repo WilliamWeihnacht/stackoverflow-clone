@@ -1,60 +1,81 @@
-# README
+# [Hack Overload](https://stackoverflowclone-pk3b.onrender.com/) is a programming form where software developers and hackers can post questions and get help. Questions and answers are rated by community votes. Questions, answers, and votes can be updated and deleted. Users can also search for posts.
 
-[Hack Overload](https://stackoverflowclone-pk3b.onrender.com/) is a programming form where software developers and hackers can post questions and get help. Questions and answers are rated by community votes. Questions, answers, and votes can be updated and deleted. Users can also search for posts.
-[Hack Overload](https://stackoverflowclone-pk3b.onrender.com/) is a programming form where software developers and hackers can post questions and get help. Questions and answers are rated by community votes. Questions, answers, and votes can be updated and deleted. Users can also search for posts.
+## Features
 
-Hack Overload was made using a rails backend which takes data from a postgres database and serves json to a react frontend.
+### Questions
 
-One of the features that I'm most proud of is the search funtionality. It is able to handle multiple keywords and look for each of them in both the title and body of each post. This feature makes use of active record quieries and associations to effeciently serve the front end relevent sorted posts in chunks of 10 for fast response time.
-One of the features that I'm most proud of is the search funtionality. It is able to handle multiple keywords and look for each of them in both the title and body of each post. This feature makes use of active record quieries and associations to effeciently serve the front end relevent sorted posts in chunks of 10 for fast response time.
+#### Index
 
-Another feature I like is the dynamic editing of posts. When the edit button is clicked, instead of redirecting to a edit form, the question's show page changes into a form dynamically, allowing the user to edit seamlessly.
-Another feature I like is the dynamic editing of posts. When the edit button is clicked, instead of redirecting to a edit form, the question's show page changes into a form dynamically, allowing the user to edit seamlessly.
+Going to /questions will yield the question index.
 
-Here's a sample of some code that runs when a use hits the upvote button. This was difficult to implement as there are 3 cases that require unique changes to the state/database. Each block sends data to the backend, updates the store, and updates the staet of the component, and changes the css of the page in a unique way. This function also handles upvotes for both questions and answers which are significantly different and require different treatment.
-```
-const handleUpvote = async (e) => {
-        if (userVote && userVote.upvote === false) {
-            if (post.title) {
-                const data = {
-                    question_id: questionId,
-                    upvote: true
-                }
-                dispatch(updateQuestionVote(data))
-            } else {
-                const data = {
-                    answer_id: post.id,
-                    upvote: true
-                }
-                dispatch(updateAnswerVote(data))
-            }
-            setScoreState(scoreState+2);
-            setDownvote("downvote");
-            setUpvote("upvote-active");
-        } else if (userVote?.upvote === true) {
-            if (post.title) {
-                dispatch(deleteQuestionVote(userVote));
-            } else {
-                dispatch(deleteAnswerVote(userVote));
-            }
-            setScoreState(scoreState-1);
-            setUpvote("upvote");
-        } else {
-            if (post.title) {
-                const data = {
-                    question_id: questionId,
-                    upvote: true
-                }
-                dispatch(createQuestionVote(data));
-            } else {
-                const data = {
-                    answer_id: post.id,
-                    upvote: true
-                }
-                dispatch(createAnswerVote(data));
-            }
-            setScoreState(scoreState+1);
-            setUpvote("upvote-active");
-        }
-    }
-```
+<img width="1440" alt="Screen Shot 2023-03-02 at 6 26 31 PM" src="https://user-images.githubusercontent.com/10673921/222615936-52f677d7-3b31-46ee-bd07-fb42ba293181.png">
+
+#### Read
+
+You can view each individual question to see it's score and body text.
+
+<img width="1024" alt="Screen Shot 2023-03-02 at 6 20 55 PM" src="https://user-images.githubusercontent.com/10673921/222615154-312d86f5-0830-4209-b26f-531e85af7bd1.png">
+
+#### Create
+
+You can submit a new question at /questions/new.
+
+<img width="580" alt="Screen Shot 2023-03-02 at 6 19 17 PM" src="https://user-images.githubusercontent.com/10673921/222614933-423ee2d4-a000-4924-bfde-70a8a6525507.png">
+
+#### Delete
+
+When you go to a question you own there will be the options to edit and delete at the top by the date it was posted. Clicking delete will immediately delete it.
+
+<img width="1024" alt="Screen Shot 2023-03-02 at 6 20 55 PM" src="https://user-images.githubusercontent.com/10673921/222615154-312d86f5-0830-4209-b26f-531e85af7bd1.png">
+
+#### Update
+
+In the same place you go to delete a question there will be an option to edit. If you click edit the layout will change to allow you to edit it.
+
+<img width="1060" alt="Screen Shot 2023-03-02 at 6 22 43 PM" src="https://user-images.githubusercontent.com/10673921/222615394-cdd4cfd2-4d49-4669-8964-1bc42a16b94b.png">
+
+### Answers
+
+#### Create
+
+Going to the bottom of a question page will reveal a form which allows you to make a response.
+
+<img width="1032" alt="Screen Shot 2023-03-02 at 6 30 32 PM" src="https://user-images.githubusercontent.com/10673921/222616534-30548271-c9e6-4435-921d-48f6e54b1e41.png">
+
+#### Read
+
+All answers are displayed under the question they are responding to.
+
+<img width="1013" alt="Screen Shot 2023-03-02 at 6 31 53 PM" src="https://user-images.githubusercontent.com/10673921/222616715-55712e8c-797c-4507-879a-d546f1a3ddf0.png">
+
+#### Update/Delete
+
+You can update and delete an answer in the bottom right of it if you own it.
+
+<img width="1017" alt="Screen Shot 2023-03-02 at 6 32 56 PM" src="https://user-images.githubusercontent.com/10673921/222616854-d861dafe-b43b-4cd1-b30a-3ff424489210.png">
+
+### Users
+
+#### Index
+
+The index of existing users can be found at /users
+
+<img width="1223" alt="Screen Shot 2023-03-02 at 6 39 16 PM" src="https://user-images.githubusercontent.com/10673921/222617706-0189579a-efef-45b1-a318-d633afb8346f.png">
+
+#### Read
+
+Going to a user's page will show all their questions and answers.
+
+<img width="1226" alt="Screen Shot 2023-03-02 at 6 40 33 PM" src="https://user-images.githubusercontent.com/10673921/222617877-f51b3dd2-8811-42ca-994c-7b00232fdffd.png">
+
+#### Create
+
+To make a new user go to /signup or click the sign up button in the nav bar.
+
+<img width="583" alt="Screen Shot 2023-03-02 at 6 42 19 PM" src="https://user-images.githubusercontent.com/10673921/222618112-a11375d3-bf8f-4a5e-b049-418f79b2555a.png">
+
+### Search
+
+To make a search type something in the search bar and press your enter key.
+
+<img width="1125" alt="Screen Shot 2023-03-02 at 6 44 47 PM" src="https://user-images.githubusercontent.com/10673921/222618452-22c0c957-cef1-4aba-9ed3-fc653b24cefa.png">
