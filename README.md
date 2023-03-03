@@ -11,7 +11,13 @@ Going to /questions will yield the question index.
 
 <img width="1440" alt="Screen Shot 2023-03-02 at 6 26 31 PM" src="https://user-images.githubusercontent.com/10673921/222615936-52f677d7-3b31-46ee-bd07-fb42ba293181.png">
 
-#### Post
+#### Read
+
+You can view each individual question to see it's score and body text.
+
+<img width="1024" alt="Screen Shot 2023-03-02 at 6 20 55 PM" src="https://user-images.githubusercontent.com/10673921/222615154-312d86f5-0830-4209-b26f-531e85af7bd1.png">
+
+#### Create
 
 You can submit a new question at /questions/new.
 
