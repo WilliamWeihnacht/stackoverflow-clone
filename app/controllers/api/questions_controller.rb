@@ -16,8 +16,6 @@ class Api::QuestionsController < ApplicationController
             @filtered_questions = Question.all
         end
 
-        
-
         order = params[:order]
         case order
         when "new"
@@ -25,9 +23,10 @@ class Api::QuestionsController < ApplicationController
         when "modified"
             @questions = @filtered_questions.order(updated_at: :desc)
         when "score"
-            #todo
-            # debugger
-            @questions = Question.joins(:votes).sum('questions.id')
+            @questions = @filtered_questions.select("questions.*, SUM(CASE WHEN question_votes.upvote = true THEN 1 ELSE -1 END) AS score")
+            .joins(:votes)
+            .group("questions.id")
+            .order(score: :desc)
         else
             @questions = @filtered_questions.joins(:votes).count('questions.id')
         end

@@ -111,7 +111,7 @@ const QuestionIndex = props => {
                 <select onChange={handleOptionsChange}>
                     <option value="new">Newest</option>
                     <option value="modified">Last Modified</option>
-                    {/* <option value="score">Highest Score</option> */}
+                    <option value="score">Highest Score</option>
                 </select>
                 <NavLink to={"/questions/new"}><button>New Question</button></NavLink>
                 </div>
