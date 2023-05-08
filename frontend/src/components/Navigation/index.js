@@ -19,13 +19,13 @@ function Navigation() {
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <button onClick={logout}>Logout</button>
+      <button onClick={logout} id='log-out-button'>Logout</button>
     );
   } else {
     sessionLinks = (
       <>
-        <NavLink to="/login"><button>Log In</button></NavLink>
-        <NavLink to="/signup"><button>Sign Up</button></NavLink>
+        <NavLink to="/login"><button id='log-in-button'>Log In</button></NavLink>
+        <NavLink to="/signup"><button id='sign-up-button'>Sign Up</button></NavLink>
       </>
     );
   }
